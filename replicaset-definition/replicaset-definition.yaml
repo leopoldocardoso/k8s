@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # Versão utilizada para replicaset
+kind: ReplicaSet # Tipo do objeto
+metadata: # Dados sobre o objeto
+  name: myapp-replicaset # Nome do objeto (replicaset)
+  labels: # Pode ter qualquer valor para identificar a aplicação
+    app: myapp-rs
+    type: frontend
+spec: # Especicificações referente ao todo, replicaset e containers
+  template:
+    metadata:
+      name: myapp-rs
+      labels: 
+        app: myapp-rs
+        type: frontend
+    spec: # Especificação referente ao container
+      containers:
+        - name: replicaset-nginx
+          image: nginx
+  replicas: 3 # Quantidade de replicas
+  selector:
+    matchLabels: # Combina a label abaixo com a label do pod
+      type: frontend 

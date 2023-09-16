@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # Versão utilizada para deployment
+kind: Deployment  # Tipo do objeto
+metadata: # Dados sobre o objeto
+  name: myapp-deployment  # Nome do deployment
+  labels: # Pode ter qualquer valor para identificar a aplicação. Pode ter várias labels
+    app: myapp
+    type: backend
+spec: # Especificações referente ao todo, deployment e containers
+  template:
+    metadata:
+      name: myapp-pod  # Nome da aplicação
+      labels: 
+        app: myapp-deployment 
+        type: backend
+    spec: # Especificações referente ao container
+      containers:
+        - name: deployment-redis
+          image: redis
+  replicas: 3 # Quantidade de réplicas, ou seja, quantos pods irão ser criados
+  selector:
+    matchLabels:
+      type: backend 
