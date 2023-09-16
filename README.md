@@ -7,7 +7,7 @@
  - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo 
  - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
-   - kubectl run webserver nginx
+    - kubectl run webserver nginx
 
  ## Conceito de ReplicaSet ##
 
@@ -15,7 +15,7 @@
 - É geralmente utilizado para garantir a disponibilidade de um certo número de Pods idênticos
 - Para criar um replicaset a partir do arquivo yaml basta executar o comando: kubectl create -f < nome do arquivo.yaml >
 
-  - kubectl create -f replicaset-definition.yaml
+   - kubectl create -f replicaset-definition.yaml
     
 - O número de réplicas no arquivo yaml é quantidade de pods que serão criados
 
