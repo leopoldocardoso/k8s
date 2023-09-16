@@ -1,6 +1,6 @@
 # k8s
 
-## Nota os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
+## Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
 ## Conceito de POD ##
 
