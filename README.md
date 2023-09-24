@@ -67,3 +67,27 @@ Algumas informações sobre o comando:
  - Partes do comando:
    - --dry-run=client: não executa a criação do deploy
    - -o yaml > deployment-definition.yaml: gera o manifesto yaml e salva este manifesto no arquivo deployment-definition.yaml
+
+## Conceito de Services ##
+
+- Permite a comunicação entre vários componentes dentro e fora da aplicação
+- O serviço kubernetes é um objeto, assim como um POD, Deployment ou ReplicaSet
+- No kubernetes temos três tipos de Services:
+  - NodePort
+  - ClusterIP
+  - LoadBalancer
+- Neste primeiro momento iremos falar e demonstrar o NodePort
+  - O serviço NodePort funciona mapeando portas, sendo uma no node e outra na aplicação. 
+  - Neste serviço há três portas mapeadas:
+    - Porta onde o servidor web está rodando, geralmente a porta 80 e é sempre referenciada como TargetPort
+    - Porta do próprio serviço, simplesmente referenciada apenas como porta
+    - Porta do node, que usamos para acessar o servidor externalmente, NodePort. As portas do node só podem ser ajustadas entre 30000 e 32767. Se não declararmos essa porta no arquivo yaml, o kubernetes define de forma automática
+- Para criar o service você executa o seguinte comando:  kubectl create -f <nome do arquivo.yaml>
+
+     - kubectl create -f service-definition.yaml
+
+- Após a criação do service é possível executar o comando kubectl get service ou kubectl get svc para verificarmos se o serviço foi criado. Neste caso rodei com o grep para pegar apenas o serviço criado com o comando acima
+
+     - kubectl get svc
+
+![Alt text](imagem/k8s-services.png)
