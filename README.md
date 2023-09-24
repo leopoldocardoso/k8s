@@ -84,10 +84,9 @@ Algumas informações sobre o comando:
     - Porta do node, que usamos para acessar o servidor externalmente, NodePort. As portas do node só podem ser ajustadas entre 30000 e 32767. Se não declararmos essa porta no arquivo yaml, o kubernetes define de forma automática
 - Para criar o service você executa o seguinte comando:  kubectl create -f <nome do arquivo.yaml>
 
-     - kubectl create -f service-definition.yaml
+      - kubectl create -f service-definition.yaml
 
 - Após a criação do service é possível executar o comando kubectl get service ou kubectl get svc para verificarmos se o serviço foi criado. Neste caso rodei com o grep para pegar apenas o serviço criado com o comando acima
 
-     - kubectl get svc
+      - kubectl get svc
 
-![Alt text](imagem/k8s-services.png)
