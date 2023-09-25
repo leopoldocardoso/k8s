@@ -10,7 +10,7 @@
  - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo 
  - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
-    - kubectl run webserver nginx
+       - kubectl run webserver nginx
 
  ## Conceito de ReplicaSet ##
 
@@ -105,7 +105,7 @@ Algumas informações sobre o comando:
 1 - Criando um namespace
   - kubectl create namespace < nome do namespace >
 
-       - kubectl create namespace prod
+         - kubectl create namespace prod
 
 2 - É possivel criar um Namespace com o arquivo yaml
   - kubectl create namespace < arquivo.yaml >
