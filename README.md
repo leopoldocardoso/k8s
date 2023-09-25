@@ -105,7 +105,7 @@ Algumas informações sobre o comando:
 1 - Criando um namespace
   - kubectl create namespace < nome do namespace >
 
-    - kubectl create namespace prod
+     - kubectl create namespace prod
 
 
 
