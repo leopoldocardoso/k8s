@@ -90,3 +90,9 @@ Algumas informações sobre o comando:
 
       - kubectl get svc
 
+## Conceito de Namespace ##
+
+- Todos os objetos do Kubernetes são criados dentro de um espaço com um nome, o namespace
+- O kubernetes cria três namespaces:
+  - Kube-system: Neste é criado um conjunto de PODs e serviços para finalidade interna do próprio kubernetes. Pode ser visualizado com o comando:
+      - kubectl get pods --namespace=kube-system
