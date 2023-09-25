@@ -100,4 +100,13 @@ Algumas informações sobre o comando:
   - default: Neste namespace pode ser criados vários objetos pelo usuário.
 - Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada aplicação e ambiente caso seja utilizado apenas um cluster.
 
+## Comandos Namespaces ##
+
+1 - Criando um namespace
+  - kubectl create namespace < nome do namespace >
+
+    - kubectl create namespace prod
+
+
+
 ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png)
