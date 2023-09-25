@@ -106,12 +106,21 @@ Algumas informações sobre o comando:
   - kubectl create namespace < nome do namespace >
 
          - kubectl create namespace prod
+         - kubectl create namespace hml
 
 2 - É possivel criar um Namespace com o arquivo yaml
-  - kubectl create namespace < arquivo.yaml >
+  - kubectl create namespace -f < nome do arquivo.yaml >
 
          - kubectl create -f namespace-definition.yaml
 
+3 - Listar os Namespasces criados
+
+         - kubectl get namespace
+
+4 - Listar os pods em determinado namespace
+  - kubectl get pods --namespace=< nome do namespace>
+  
+        - kubectl get pods --namespace=dev
 
 
 ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png)
