@@ -123,4 +123,4 @@ Algumas informações sobre o comando:
         - kubectl get pods --namespace=dev
 
 
-##      ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png) ##
+##  <p align="center">    ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png) ##
