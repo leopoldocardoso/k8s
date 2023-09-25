@@ -1,4 +1,4 @@
-# k8s ![Alt text](Kubernetes_logo_without_workmark.svg.png)
+# k8s
 
 ## Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
