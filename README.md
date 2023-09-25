@@ -94,5 +94,8 @@ Algumas informações sobre o comando:
 
 - Todos os objetos do Kubernetes são criados dentro de um espaço com um nome, o namespace
 - O kubernetes cria três namespaces:
-  - Kube-system: Neste é criado um conjunto de PODs e serviços para finalidade interna do próprio kubernetes. Pode ser visualizado com o comando:
+  - Kube-system: Neste namespace é criado um conjunto de PODs e serviços para finalidade interna do próprio kubernetes. Pode ser visualizado com o comando:
       - kubectl get pods --namespace=kube-system
+  - kube-public: Neste namespace são criados recursos disponibilizados a todos usuários.
+  - default: Neste namespace pode ser criados vários objetos pelo usuário.
+- Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada apliacação e ambiente caso seja utilizado apenas um cluster.
