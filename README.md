@@ -110,7 +110,7 @@ Algumas informações sobre o comando:
 2 - É possivel criar um Namespace com o arquivo yaml
   - kubectl create namespace < arquivo.yaml >
 
-       - kubectl create -f namespace-definition.yaml
+         - kubectl create -f namespace-definition.yaml
 
 
 
