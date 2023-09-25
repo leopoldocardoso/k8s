@@ -120,8 +120,8 @@ Algumas informações sobre o comando:
 4 - Listar os pods em determinado namespace
   - kubectl get pods --namespace=< nome do namespace>
 
-      - kubectl get pods --namespace=dev
+       - kubectl get pods --namespace=dev
 
-- Exemplo de 3 namespasces
+- Exemplo de 3 namespasces em um único cluster
 
 ##  <p align="center">    ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png) ##
