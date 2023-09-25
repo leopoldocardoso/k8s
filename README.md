@@ -105,7 +105,12 @@ Algumas informações sobre o comando:
 1 - Criando um namespace
   - kubectl create namespace < nome do namespace >
 
-     - kubectl create namespace prod
+      - kubectl create namespace prod
+
+2 - É possivel criar um Namespace com o arquivo yaml
+  - kubectl create namespace < arquivo.yaml >
+
+      - kubectl create -f namespace-definition.yaml
 
 
 
