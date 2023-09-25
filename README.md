@@ -115,12 +115,12 @@ Algumas informações sobre o comando:
 
 3 - Listar os Namespasces criados
 
-         - kubectl get namespace
+    - kubectl get namespace
 
 4 - Listar os pods em determinado namespace
   - kubectl get pods --namespace=< nome do namespace>
 
-      - kubectl get pods --namespace=dev
+    - kubectl get pods --namespace=dev
 
 - Exemplo de 3 namespasces
 
