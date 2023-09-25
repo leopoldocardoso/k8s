@@ -100,4 +100,4 @@ Algumas informações sobre o comando:
   - default: Neste namespace pode ser criados vários objetos pelo usuário.
 - Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada aplicação e ambiente caso seja utilizado apenas um cluster.
 
-            ![Alt text](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png)
+![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png)
