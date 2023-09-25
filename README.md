@@ -120,7 +120,7 @@ Algumas informações sobre o comando:
 4 - Listar os pods em determinado namespace
   - kubectl get pods --namespace=< nome do namespace>
 
-     - kubectl get pods --namespace=dev
+      - kubectl get pods --namespace=dev
 
 - Exemplo de 3 namespasces
 
