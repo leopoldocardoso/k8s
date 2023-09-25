@@ -98,4 +98,5 @@ Algumas informações sobre o comando:
       - kubectl get pods --namespace=kube-system
   - kube-public: Neste namespace são criados recursos disponibilizados a todos usuários.
   - default: Neste namespace pode ser criados vários objetos pelo usuário.
-- Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada apliacação e ambiente caso seja utilizado apenas um cluster.
+- Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada aplicação e ambiente caso seja utilizado apenas um cluster.
+  ![Alt text](image.png)
