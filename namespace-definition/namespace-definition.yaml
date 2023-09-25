@@ -1,0 +1,4 @@
+apiVersion: v1 # Versão utilizada para o Namespace
+kind: Namespace # Tipo do objeto
+metadata: # Dados sobre o objeto (namespace)
+  name: dev # Nome do namespace
