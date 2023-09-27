@@ -1,10 +1,8 @@
-# Estudos k8s 
-<p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/></p>
+# Estudos k8s <p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/></p>
 
-## Este repositório tem como objetivo compartilhar o conhecimento que venho adiquirindo nos estudos de Kubernetes e auxiliar 
-## as pessoas que tenham interesse neste conhecimento
+# Este repositório tem como objetivo compartilhar o conhecimento que venho adiquirindo nos estudos de Kubernetes e auxiliar as pessoas que tenham interesse neste conhecimento
 
-# Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
+### Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
 ## Conceito de POD ##
 
