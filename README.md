@@ -31,7 +31,7 @@
    ``
     **- kubectl replace -f repicaset-definition.yaml**
    ``
-   
+
 2 - Escalando através do comando kubectl scale --replicas=< nro de pods > -f < nome do arquivo.yaml >
 
     - kubectl scale --replicas=3 -f replicaset-definition.yaml
@@ -124,7 +124,6 @@ Algumas informações sobre o comando:
 
 ``````
   kubectl get pods --namespace=dev
-
 ``````
 
 5 - Listar todos os pods em todos os namespasces
