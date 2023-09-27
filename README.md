@@ -1,4 +1,6 @@
-# k8s
+# Estudos k8s <p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/></p>
+
+## Este repositório tem como objetivo compartilhar o conhecimento que venho adiquirindo nos estudos de Kubernetes e auxiliar as pessoas que tenham interesse neste conhecimento
 
 ## Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
@@ -110,6 +112,7 @@ Algumas informações sobre o comando:
 - Todos os objetos do Kubernetes são criados dentro de um espaço com um nome, o namespace
 - O kubernetes cria três namespaces:
   - Kube-system: Neste namespace é criado um conjunto de PODs e serviços para finalidade interna do próprio kubernetes. Pode ser visualizado com o comando:
+
    ``````
     kubectl get pods --namespace=kube-system
    ``````
