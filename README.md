@@ -128,7 +128,9 @@ Algumas informações sobre o comando:
 
 5 - Listar todos os pods em todos os namespasces
 
-   - kubectl get pods --all -namespaces
+``````
+   kubectl get pods --all -namespaces
+``````
 
 6 - Troca de contexto entre namespaces
 
@@ -138,7 +140,9 @@ Algumas informações sobre o comando:
 
      - kubectl config set-context $(kubectl config current-context) --namespace=< nome do namespace> onde no exemplo acima seria:
 
-        - kubectl config set-context $(kubectl config current-context) --namespace=namespace-prod
+``````
+     kubectl config set-context $(kubectl config current-context) --namespace=namespace-prod
+``````
 
 
 - Exemplo de 3 namespasces em um único cluster
