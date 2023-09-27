@@ -10,7 +10,7 @@
  - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo 
  - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
-       - kubectl run webserver nginx
+    - kubectl run webserver nginx
 
  ## Conceito de ReplicaSet ##
 
@@ -27,9 +27,9 @@
 É possível escalar o ReplicaSet de 3 maneiras:
 
 1 - Editando o arquivo yaml, por exemplo, replicaset-definition.yaml, alterando o número de réplicas. Após salvar o arquivo, executar o comando:
-
-    - kubectl replace -f repicaset-definition.yaml
-
+   ``
+    **- kubectl replace -f repicaset-definition.yaml**
+   ``
 2 - Escalando através do comando kubectl scale --replicas=< nro de pods > -f < nome do arquivo.yaml >
 
     - kubectl scale --replicas=3 -f replicaset-definition.yaml
