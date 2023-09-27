@@ -120,7 +120,7 @@ Algumas informações sobre o comando:
 4 - Listar os pods em determinado namespace
   - kubectl get pods --namespace=< nome do namespace >
 
-  >kubectl get pods --namespace=dev
+  ``kubectl get pods --namespace=dev``
 
 5 - Listar todos os pods em todos os namespasces
 
