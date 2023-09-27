@@ -67,12 +67,14 @@
   ``````
 2 - Gerando um manifesto yaml executando a linha de comando kubectl create deploy --image=< nome da imagem > < nome do deploy > --dry-run=client -o yaml > deploy-definition.yaml
 
-     - kubectl create deploy --image=redis redis-deployment --dry-run=client -o yaml > deployment-definition.yaml
-
+  ``````
+    kubectl create deploy --image=redis redis-deployment --dry-run=client -o yaml > deployment-definition.yaml
+  ``````
    - Após gerar o arquivo yaml é necessário executar o comando kubectl create -f < nome do arquivo.yaml >
 
-    - kubectl create -f deployment-definition.yaml
-
+   ``````
+    kubectl create -f deployment-definition.yaml
+   ``````
 Algumas informações sobre o comando:
  - --dry-run=client -o yaml > deployment-definition.yaml: não executa a criação do deployment. Gera o manifesto yaml e salva este manifesto no arquivo deployment-definition.yaml
  - Partes do comando:
@@ -95,18 +97,22 @@ Algumas informações sobre o comando:
     - Porta do node, que usamos para acessar o servidor externalmente, NodePort. As portas do node só podem ser ajustadas entre 30000 e 32767. Se não declararmos essa porta no arquivo yaml, o kubernetes define de forma automática
 - Para criar o service você executa o seguinte comando:  kubectl create -f <nome do arquivo.yaml>
 
-      - kubectl create -f service-definition.yaml
-
+  ``````
+  kubectl create -f service-definition.yaml
+  ``````
 - Após a criação do service é possível executar o comando kubectl get service ou kubectl get svc para verificarmos se o serviço foi criado. Neste caso rodei com o grep para pegar apenas o serviço criado com o comando acima
 
-      - kubectl get svc
-
+ ``````
+  kubectl get svc
+``````
 ## Conceito de Namespace ##
 
 - Todos os objetos do Kubernetes são criados dentro de um espaço com um nome, o namespace
 - O kubernetes cria três namespaces:
   - Kube-system: Neste namespace é criado um conjunto de PODs e serviços para finalidade interna do próprio kubernetes. Pode ser visualizado com o comando:
-      - kubectl get pods --namespace=kube-system
+   ``````
+    kubectl get pods --namespace=kube-system
+   ``````
   - kube-public: Neste namespace são criados recursos disponibilizados a todos usuários.
   - default: Neste namespace pode ser criados vários objetos pelo usuário.
 - Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada aplicação e ambiente caso seja utilizado apenas um cluster.
@@ -116,17 +122,23 @@ Algumas informações sobre o comando:
 1 - Criando um namespace
   - kubectl create namespace < nome do namespace >
 
-         - kubectl create namespace prod
-         - kubectl create namespace hml
+  ``````
+    kubectl create namespace prod
+    kubectl create namespace hml
+  ``````
 
 2 - É possivel criar um Namespace com o arquivo yaml
   - kubectl create namespace -f < nome do arquivo.yaml >
 
-         - kubectl create -f namespace-definition.yaml
+   ``````
+    kubectl create -f namespace-definition.yaml
+  ``````
 
 3 - Listar os Namespasces criados
 
-    - kubectl get namespace
+  ``````
+    kubectl get namespace
+  ``````
 
 4 - Listar os pods em determinado namespace
   - kubectl get pods --namespace=< nome do namespace >
