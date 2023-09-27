@@ -1,4 +1,4 @@
-# k8s
+# k8s ![Alt text](Kubernetes_logo_without_workmark.svg.png)
 
 ## Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
@@ -118,9 +118,24 @@ Algumas informações sobre o comando:
     - kubectl get namespace
 
 4 - Listar os pods em determinado namespace
-  - kubectl get pods --namespace=< nome do namespace>
+  - kubectl get pods --namespace=< nome do namespace >
 
        - kubectl get pods --namespace=dev
+
+5 - Listar todos os pods em todos os namespasces
+
+   - kubectl get pods --all -namespaces
+
+6 - Troca de contexto entre namespaces
+
+   - Este comando é bem importante e um dos mais dificeis para ser lembrado e executado no dia a dia em minha opinião. Para explicar o comando vamos usar o seguinte exemplo:
+
+     - Considerando a imagem abaixo, vamos supor que estou trabalhando no namespace-dev e por algum motivo preciso mudar para o namespace-prod. O comando a ser executado é:
+
+     - kubectl config set-context $(kubectl config current-context) --namespace=< nome do namespace> onde no exemplo acima seria:
+
+        - kubectl config set-context $(kubectl config current-context) --namespace=namespace-prod
+
 
 - Exemplo de 3 namespasces em um único cluster
 
