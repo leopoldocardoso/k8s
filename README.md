@@ -1,4 +1,4 @@
-# k8s ![Alt text](Kubernetes_logo_without_workmark.svg.png)
+# k8s
 
 ## Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
@@ -10,7 +10,9 @@
  - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo 
  - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
-    - kubectl run webserver nginx
+``````
+  kubectl run webserver nginx
+``````
 
  ## Conceito de ReplicaSet ##
 
@@ -18,7 +20,9 @@
 - É geralmente utilizado para garantir a disponibilidade de um certo número de Pods idênticos
 - Para criar um replicaset a partir do arquivo yaml basta executar o comando: kubectl create -f < nome do arquivo.yaml >
 
-   - kubectl create -f replicaset-definition.yaml
+``````
+  kubectl create -f replicaset-definition.yaml
+``````
     
 - O número de réplicas no arquivo yaml é quantidade de pods que serão criados
 
@@ -28,17 +32,21 @@
 
 1 - Editando o arquivo yaml, por exemplo, replicaset-definition.yaml, alterando o número de réplicas. Após salvar o arquivo, executar o comando:
 
-   ``
-    **- kubectl replace -f repicaset-definition.yaml**
-   ``
+   ``````
+     kubectl replace -f repicaset-definition.yaml
+   ``````
 
 2 - Escalando através do comando kubectl scale --replicas=< nro de pods > -f < nome do arquivo.yaml >
 
-    - kubectl scale --replicas=3 -f replicaset-definition.yaml
+   ``````
+    kubectl scale --replicas=3 -f replicaset-definition.yaml
+  ``````
 
 3 - Escalando através do comando kubectl scale --replicas=< nro de pods > replicaset < nome do arquivo.yaml >
 
-    - kubectl scale --replicas=8 replicaset replicaset-definition.yaml
+   ``````
+    kubectl scale --replicas=8 replicaset replicaset-definition.yaml
+  ``````
 
 ## Conceito de Deployment ##
 
@@ -54,8 +62,9 @@
 1 - Executando o comando kubectl create deployment --image=< nome da imagem> < nome do deployment >
     Obs: poder ser deployment ou deploy
 
-     - kubectl create deploy --image=nginx nginx-deploy
-
+  ``````  
+   kubectl create deploy --image=nginx nginx-deploy
+  ``````
 2 - Gerando um manifesto yaml executando a linha de comando kubectl create deploy --image=< nome da imagem > < nome do deploy > --dry-run=client -o yaml > deploy-definition.yaml
 
      - kubectl create deploy --image=redis redis-deployment --dry-run=client -o yaml > deployment-definition.yaml
