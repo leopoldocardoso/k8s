@@ -1,4 +1,3 @@
-```yaml
 apiVersion: v1 # Versão utilizada para Pod
 kind: Pod # Tipo do objeto
 metadata: # Dados sobre o objeto
@@ -10,4 +9,4 @@ spec: # Neste bloco será informado as especificações do pod/deployment como a
   containers:
     - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
       image: nginx # Imagem do nginx no Docker Hub
-```
+
