@@ -12,9 +12,9 @@
  - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo 
  - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
-``````
+```yaml
   kubectl run webserver nginx
-``````
+```
 
  ## Conceito de ReplicaSet ##
 
