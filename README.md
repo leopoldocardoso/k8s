@@ -181,7 +181,6 @@ Algumas informações sobre o comando:
       ``````
         kubectl create -f deploy.definition.yaml
         kubectl create -f ns.definition.yaml
-
       ``````
 
 
