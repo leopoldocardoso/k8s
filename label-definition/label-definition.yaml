@@ -1,0 +1,12 @@
+apiVersion: v1 # Versão utilizada para Pod
+kind: Pod # Tipo do objeto
+metadata: # Dados sobre o objeto
+  name: label-definition # Nome da aplicação
+  labels: # Pode ter qualquer valor para identificar a aplicação. Podemos ter várias labels
+    app: app 
+    type: back-end
+    estudos: k8s
+spec: # Neste bloco será informado as especificações do pod/deployment como as imagens de containers
+  containers:
+    - name: nginx # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
+      image: nginx # Imagem do nginx no Docker Hub
