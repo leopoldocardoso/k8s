@@ -177,13 +177,14 @@ Algumas informações sobre o comando:
 
 - Comandos declarativos: quando utilizamos arquivos yamls (manifestos) para criação dos objetos em um cluster kubernetes. 
   - Exemplos
-
       ``````
         kubectl create -f deploy.definition.yaml
+
         kubectl create -f ns.definition.yaml
       ``````
 
-
-
-
 - Comandos imperativos: quando usamos os comandos para criação dos objetos em um cluster kubernetes sem a necessidade de um arquivo yaml.
+  - Exemplo:
+      ``````
+        kubectl run nginx --image=nging
+      ``````
