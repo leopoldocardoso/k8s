@@ -1,9 +1,8 @@
 	1. POD: 
 	• Create a nginx pod
-      ``````
+      ``
       	  kubectl run nginx --image=nginx
-      ``````
-    
+      ``    
 	
 	• Generate POD Manifest YAML File (-o yaml). Don't create it (--dry-run)
 	kubectl run nginx --image=nginx --dry-run=client -o yaml
