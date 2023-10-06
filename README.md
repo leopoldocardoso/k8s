@@ -172,3 +172,19 @@ Algumas informações sobre o comando:
 - Exemplo de 3 namespasces em um único cluster
 
 ##  <p align="center">    ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png) ##
+
+## Comandos Imperativos VS Comandos declarativos ##
+
+- Comandos declarativos: quando utilizamos arquivos yamls (manifestos) para criação dos objetos em um cluster kubernetes. 
+  - Exemplos
+
+      ``````
+        kubectl create -f deploy.definition.yaml
+        kubectl create -f ns.definition.yaml
+
+      ``````
+
+
+
+
+- Comandos imperativos: quando usamos os comandos para criação dos objetos em um cluster kubernetes sem a necessidade de um arquivo yaml.
