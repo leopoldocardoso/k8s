@@ -186,5 +186,5 @@ Algumas informações sobre o comando:
 - Comandos imperativos: quando usamos os comandos para criação dos objetos em um cluster kubernetes sem a necessidade de um arquivo yaml.
   - Exemplo:
       ``````
-        kubectl run nginx --image=nging
+        kubectl run nginx --image=ngingx
       ``````

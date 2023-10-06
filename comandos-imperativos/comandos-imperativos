@@ -1,0 +1,3 @@
+ ``````
+        kubectl run nginx --image=ngingx
+      ``````
