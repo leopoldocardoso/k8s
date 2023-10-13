@@ -173,7 +173,7 @@ Algumas informações sobre o comando:
 
 ##  <p align="center">    ![Exemplo de namespaces](https://github.com/leopoldocardoso/k8s/blob/main/namespace-definition/imagem/namespaces.png) ##
 
-## Comandos Imperativos VS Comandos declarativos ##
+## Comandos Imperativos VS Comandos Declarativos ##
 
 - Comandos declarativos: quando utilizamos arquivos yamls (manifestos) para criação dos objetos em um cluster kubernetes. 
   - Exemplos
