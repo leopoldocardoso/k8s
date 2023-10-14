@@ -189,13 +189,24 @@ Algumas informações sobre o comando:
         kubectl run nginx --image=ngingx
       ``````
 ## Schedule ##
-- Scheduling (agendador) é a configuração onde o POD será criado, ou seja, em que node o POD será criado
+- Scheduling (agendador) é a configuração onde o POD será criado, ou seja, em que node o POD será criado.
 - Geralmente o schedule é definido de forma automática, mas pode ser definido de forma manual no arquivo yaml como no exemplo do arquivo scheduling.yaml
+- Caso não haja schedule o POD ficará com status de pending
 - Não é possível mover os PODs entre nodes, é necessário excluir e recriá-lo em novo node com o comando abaixo:
 
   ``````
     kubectl replace --force -f scheduling.yaml
   ``````
+
+## Labels e Selectors ##
+- Labels e selectors são um método padrão para agrupar os objetos
+- Labels são propriedades anexadas a cada item
+- Os selectors ajudam a filtrar estes itens
+- No momento da criação de um POD é possível colocar várias labels
+- É possível selecionar um POD através da label.
+ Exemplo: 
+   `````` kubectl get pods --selector = app01
+   ``````
 ## Taints e Tolerations ##
 - Taints são usados par definir restrições do que pode ser programado em um node. 
 - Permitem que um node repudie um conjunto de PODs.
