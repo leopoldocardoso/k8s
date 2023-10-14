@@ -202,6 +202,7 @@ Algumas informações sobre o comando:
   kubectl taint nodes node01 key=app:NoSchedule 
   ``````  
 - Visualizando taint no node: kubectl describe node < nome do node > ou kubectl describe node < nome do node > | grep Taints
+
   ``````
   kubectl describe node node01 
 
