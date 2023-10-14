@@ -188,3 +188,4 @@ Algumas informações sobre o comando:
       ``````
         kubectl run nginx --image=ngingx
       ``````
+## Taints e Tolerations ##
