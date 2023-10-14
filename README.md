@@ -248,4 +248,3 @@ Algumas informações sobre o comando:
 
       kubectl describe node worker | grep -i taints
     ``````
-   
