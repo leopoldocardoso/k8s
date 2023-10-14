@@ -250,4 +250,4 @@ Algumas informações sobre o comando:
       kubectl describe node worker | grep -i taints # Visualizando o taint
 
     ``````
-  ##  <p align="center">  https://github.com/leopoldocardoso/k8s/blob/main/taint-definition/taint-image/image.png ##
+  ##  <p align="center">    ![taint aplicado no node](https://github.com/leopoldocardoso/k8s/blob/main/taint-definition/taint-image/image.png) ##
