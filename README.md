@@ -237,3 +237,7 @@ Algumas informações sobre o comando:
 
   kubectl describe node node01 | grep Taints
   ``````
+- Removendo o taint do node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect-
+   ``````
+  kubectl taint nodes node01 key=app:NoSchedule-
+  ``````  
