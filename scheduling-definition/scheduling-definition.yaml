@@ -8,4 +8,4 @@ spec: # Neste bloco será informado as especificações do pod/deployment como a
   containers:
     - name: nginx # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
       image: nginx # Imagem do nginx no Docker Hub
-  nodeName: worker 
+  nodeName: worker #Schedule manual informando em que node o pode será criado 
