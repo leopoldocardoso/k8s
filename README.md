@@ -248,4 +248,4 @@ Algumas informações sobre o comando:
 
       kubectl describe node worker | grep -i taints
     ``````
-    ![Alt text](image-1.png)
+   
