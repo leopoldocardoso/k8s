@@ -200,5 +200,10 @@ Algumas informações sobre o comando:
 - Adicionando taint no node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect
   ``````
   kubectl taint nodes node01 key=app:NoSchedule 
-  
   ``````  
+- Visualizando taint no node: kubectl describe node < nome do node > ou kubectl describe node < nome do node > | grep Taints
+  ``````
+  kubectl describe node node01 
+
+  kubectl describe node node01 | grep Taints
+  ``````
