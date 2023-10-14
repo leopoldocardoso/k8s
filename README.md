@@ -188,6 +188,14 @@ Algumas informações sobre o comando:
       ``````
         kubectl run nginx --image=ngingx
       ``````
+## Schedule ##
+- Scheduling (agendador) é a configuração onde o POD será criado, ou seja, em que node o POD será criado
+- Geralmente o schedule é definido de forma automática, mas pode ser definido de forma manual no arquivo yaml como no exemplo do arquivo scheduling.yaml
+- Não é possível mover os PODs entre nodes, é necessário excluir e recriá-lo em novo node com o comando abaixo:
+  ``````
+    kubectl replace --force -f scheduling.yaml
+  ``````
+  
 ## Taints e Tolerations ##
 - Taints são usados par definir restrições do que pode ser programado em um node. 
 - Permitem que um node repudie um conjunto de PODs.
