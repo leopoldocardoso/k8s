@@ -162,7 +162,7 @@ Algumas informações sobre o comando:
 
      - Considerando a imagem abaixo, vamos supor que estou trabalhando no namespace-dev e por algum motivo preciso mudar para o namespace-prod. O comando a ser executado é:
 
-     - kubectl config set-context $(kubectl config current-context) --namespace=< nome do namespace> onde no exemplo acima seria:
+     - kubectl config set-context $(kubectl config current-context) --namespace=< nome do namespace > onde no exemplo acima seria:
 
 ``````
      kubectl config set-context $(kubectl config current-context) --namespace=namespace-prod
@@ -189,3 +189,10 @@ Algumas informações sobre o comando:
         kubectl run nginx --image=ngingx
       ``````
 ## Taints e Tolerations ##
+- Taints são usados par definir restrições do que pode ser programado em um node. 
+- Permitem que um node repudie um conjunto de PODs.
+- Para adicionar um taint há um node utiliza-se o seguinte comando: kubectl taint nodes < nome do node > key=value:taint-effect
+- Os taint-effects são:
+  - NoSchedule: Os PODs não serão criados no node
+  - PreferNoSchedule: O sistema evitará criar PODs neste node
+  - NoExecute: Novos PODs não serão criados no node e os já criados serão despejados com o status de evicted.
