@@ -243,12 +243,10 @@ Algumas informações sobre o comando:
   ``````  
   ## Exemplo Effect NoSchedule ##
    - Utilizando effect NoSchedule no node worker
+   
      ``````
-      kubectl taint nodes worker app=front-end:NoSchedule
+      kubectl taint nodes worker app=front-end:NoSchedule # Adcionando o taint
 
-    ``````
-    
-    ``````
-      kubectl describe node worker | grep -i taints
+      kubectl describe node worker | grep -i taints # Visualizando o taint
 
     ``````
