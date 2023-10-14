@@ -206,7 +206,10 @@ Algumas informações sobre o comando:
 - No momento da criação de um POD é possível colocar várias labels
 - É possível selecionar um POD através da label.
  Exemplo: 
-   `````` kubectl get pods --selector = app01
+
+   `````` 
+   kubectl get pods --selector = app01
+   
    ``````
 
 ## Taints e Tolerations ##
