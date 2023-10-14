@@ -246,5 +246,9 @@ Algumas informações sobre o comando:
      ``````
       kubectl taint nodes worker app=front-end:NoSchedule
 
+    ``````
+    
+    ``````
       kubectl describe node worker | grep -i taints
+
     ``````
