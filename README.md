@@ -196,3 +196,4 @@ Algumas informações sobre o comando:
   - NoSchedule: Os PODs não serão criados no node
   - PreferNoSchedule: O sistema evitará criar PODs neste node
   - NoExecute: Novos PODs não serão criados no node e os já criados serão despejados com o status de evicted.
+### Exemplos ###
