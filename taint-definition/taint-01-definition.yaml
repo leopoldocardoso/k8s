@@ -13,4 +13,4 @@ spec: # Neste bloco será informado as especificações do pod/deployment como a
     - key: "app" # chave
       operator: "Equal" # operador
       value: "front-end" # valor
-      effect: "NoSchedule" # effect --> caso os valores da key e do value não forem iguais a key e value do node o pode não será criado
+      effect: "NoSchedule" # effect --> caso os valores da key e do value não forem iguais a key e value do node o POD não será criado
