@@ -196,4 +196,6 @@ Algumas informações sobre o comando:
   - NoSchedule: Os PODs não serão criados no node
   - PreferNoSchedule: O sistema evitará criar PODs neste node
   - NoExecute: Novos PODs não serão criados no node e os já criados serão despejados com o status de evicted.
-#### Exemplos ####
+## Comandos ##
+- Adicionando taint no node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect
+  `` kubectl taint nodes node01 key=app:NoSchedule ``  
