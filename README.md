@@ -204,13 +204,18 @@ Algumas informações sobre o comando:
 - Labels são propriedades anexadas a cada item
 - Os selectors ajudam a filtrar estes itens
 - No momento da criação de um POD é possível colocar várias labels
-- É possível selecionar um POD através da label.
+- É possível selecionar um POD através da label
+- Verifique o arquivo label-definition.yaml para exemplo de utilização de labels
  Exemplo: 
 
    `````` 
    kubectl get pods --selector = app01
-   
+
    ``````
+## Annotations ##
+- Usadas para registrar detalhes a fins de informação
+- Detalhes de ferramentas, versão, e-mail entre outras.
+- Verifique o arquivo annotations-definition.yaml para exemplo de utilização de labels
 
 ## Taints e Tolerations ##
 - Taints são usados par definir restrições do que pode ser programado em um node. 
