@@ -1,0 +1,21 @@
+# Node Selector
+apiVersion: v1
+kind: Pod
+metadata:
+    name: node-selector
+    labels:
+        name: nginx
+        tier: frontend
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 8080
+    tolerations:
+      - key: "app"
+        operator: "Equal"
+        value: "blue"
+        effect: "NoSchedule"
+    nodeSelector: # para funcionar corretamente a mesma label deve está no node
+      size: "large"
