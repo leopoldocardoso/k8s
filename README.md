@@ -241,4 +241,18 @@ Algumas informações sobre o comando:
    ``````
   kubectl taint nodes node01 key=app:NoSchedule-
   ``````  
+ ## Node Selector ##
+ - Utilizado para selecionar em que nó o POD será criado
+ - Necessário colocar labels no node para dar match com a label do POD
+ - Para colocar uma label em um node usa-se o comando: kubectl label nodes < nome do node >  <label-key>=<values>
+
+   ``````
+		kubectl label nodes node01 size=large
+   ``````
+ - Após colocar o label no node, devemos colocar o node selector no POD no bloco spec conforme o arquivo nodeSelector.yaml
+ - Caso não haja o match entre o label no node e o nodeSelector o POD fica com o status Pending
+ - Para remover uma label usar o seguinte comando: kubectl label nodes < nome do node >  < label>-
  
+   `````` 
+    kubectl label nodes worker size- 
+   ``````
