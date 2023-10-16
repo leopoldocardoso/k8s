@@ -253,6 +253,7 @@ Algumas informações sobre o comando:
  - Após colocar o label no node, devemos colocar o node selector no POD no bloco spec conforme o arquivo nodeSelector.yaml
  - Caso não haja o match entre o label no node e o nodeSelector o POD fica com o status Pending
  - Para remover uma label usar o seguinte comando: kubectl label nodes < nome do node >  < label>-
+ - Para mais detalhes visualize o arquivo node-selector-definition.yaml
 
    `````` 
     kubectl label nodes worker size- 
@@ -264,3 +265,16 @@ Algumas informações sobre o comando:
   kubectl get nodes --show-labels
  
   ``````
+
+## Node Affinity ##
+- Principal função é garantir que o POD será criado nos nodes específicos
+-	O Node Affinity permite colocar expressões mais avançadas do que o node selector no momento de selecionar o node
+-	Segue algumas das expressões mais utilizadas:
+	-	Operator: pode ter os valores:
+			- In
+			- Not In
+			- Exists
+	-	Node Affinity Types
+			 - requiredDuringSchedulingIgnoredDuringExecution: o POD só será executado no node que tenha a mesma label do POD. Importante: Se houver uma mudança label do node após a criação do POD o mesmo permanecerá criado.
+       - preferredDuringSchedulingIgnoredDuringExecution: o POD será executado de preferência no node que tenha a mesma label
+- Para mais detalhes visualize o arquivo node-affinity-definition.yaml
