@@ -261,6 +261,6 @@ Algumas informações sobre o comando:
 - Para visualizar labels nos nodes executar o seguinte comando:
    
   ``````
-  kubectl get nodes --show-labels54
+  kubectl get nodes --show-labels
  
   ``````
