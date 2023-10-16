@@ -225,6 +225,7 @@ Algumas informações sobre o comando:
   - NoSchedule: Os PODs não serão criados no node
   - PreferNoSchedule: O sistema evitará criar PODs neste node
   - NoExecute: Novos PODs não serão criados no node e os já criados serão despejados com o status de evicted.
+
 ## Comandos ##
 - Adicionando taint no node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect
   ``````
@@ -252,7 +253,14 @@ Algumas informações sobre o comando:
  - Após colocar o label no node, devemos colocar o node selector no POD no bloco spec conforme o arquivo nodeSelector.yaml
  - Caso não haja o match entre o label no node e o nodeSelector o POD fica com o status Pending
  - Para remover uma label usar o seguinte comando: kubectl label nodes < nome do node >  < label>-
- 
+
    `````` 
     kubectl label nodes worker size- 
    ``````
+
+- Para visualizar labels nos nodes executar o seguinte comando:
+   
+  ``````
+  kubectl get nodes --show-labels54
+ 
+  ``````
