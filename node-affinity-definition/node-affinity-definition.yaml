@@ -1,0 +1,23 @@
+# Node Affinity
+apiVersion: v1
+kind: Pod
+metadata:
+    name: node-affinity
+    labels:
+        name: nginx
+        tier: frontend
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 8080
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+              - key: color
+                operator: In
+                values:
+                  - blue
