@@ -14,10 +14,10 @@ spec:
         - containerPort: 8080
     affinity:
       nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
+        requiredDuringSchedulingIgnoredDuringExecution: # node affinity types, neste caso requer que os valores do affinty dê match com a label do node durante o scheduling
           nodeSelectorTerms:
             - matchExpressions:
-              - key: color
-                operator: In
-                values:
-                  - blue
+              - key: color # chave
+                operator: In # operador
+                values: 
+                  - blue # valor
