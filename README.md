@@ -314,4 +314,4 @@ Algumas informações sobre o comando:
 ### Resources Quotas ###
 - Objeto de nível de namespace
 - Limita a utilização de memória e CPU por namespace
-- Segue yaml para exemplificar a criação de resources quotas resources-quotas.yaml
+- Segue yaml para exemplificar a criação de resources quotas: resources-quotas.yaml
