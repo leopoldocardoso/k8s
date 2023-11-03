@@ -9,7 +9,7 @@
  - O POD é o menor objeto que se pode criar no kubernetes
  - Se precisarmos escalar a aplicação, adicionamos uma nova instância de um POD com a mesma aplicação
  - Geralmente a relação é de um POD para um Container
- - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo 
+ - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo
  - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
 ```
@@ -18,14 +18,14 @@
 
  ## Conceito de ReplicaSet ##
 
-- O propósito de um ReplicaSet é gerenciar um conjunto de réplicas de Pods em execução a qualquer momento 
+- O propósito de um ReplicaSet é gerenciar um conjunto de réplicas de Pods em execução a qualquer momento
 - É geralmente utilizado para garantir a disponibilidade de um certo número de Pods idênticos
 - Para criar um replicaset a partir do arquivo yaml basta executar o comando: kubectl create -f < nome do arquivo.yaml >
 
 ``````
   kubectl create -f replicaset-definition.yaml
 ``````
-    
+
 - O número de réplicas no arquivo yaml é quantidade de pods que serão criados
 
 ## Escalando ReplicaSet ##
@@ -64,7 +64,7 @@
 1 - Executando o comando kubectl create deployment --image=< nome da imagem> < nome do deployment >
     Obs: poder ser deployment ou deploy
 
-  ``````  
+  ``````
    kubectl create deploy --image=nginx nginx-deploy
   ``````
 2 - Gerando um manifesto yaml executando a linha de comando kubectl create deploy --image=< nome da imagem > < nome do deploy > --dry-run=client -o yaml > deploy-definition.yaml
@@ -188,7 +188,7 @@ Algumas informações sobre o comando:
       ``````
         kubectl run nginx --image=ngingx
       ``````
-  
+
   ## Schedule ##
 - Scheduling (agendador) é a configuração onde o POD será criado, ou seja, em que node o POD será criado.
 - Geralmente o schedule é definido de forma automática, mas pode ser definido de forma manual no arquivo yaml como no exemplo do arquivo scheduling.yaml
@@ -206,9 +206,9 @@ Algumas informações sobre o comando:
 - No momento da criação de um POD é possível colocar várias labels
 - É possível selecionar um POD através da label
 - Verifique o arquivo label-definition.yaml para exemplo de utilização de labels
- Exemplo: 
+ Exemplo:
 
-   `````` 
+   ``````
    kubectl get pods --selector = app01
 
    ``````
@@ -218,7 +218,7 @@ Algumas informações sobre o comando:
 - Verifique o arquivo annotations-definition.yaml para exemplo de utilização de labels
 
 ## Taints e Tolerations ##
-- Taints são usados par definir restrições do que pode ser programado em um node. 
+- Taints são usados par definir restrições do que pode ser programado em um node.
 - Permitem que um node repudie um conjunto de PODs.
 - Para adicionar um taint há um node utiliza-se o seguinte comando: kubectl taint nodes < nome do node > key=value:taint-effect
 - Os taint-effects são:
@@ -229,19 +229,19 @@ Algumas informações sobre o comando:
 ## Comandos ##
 - Adicionando taint no node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect
   ``````
-  kubectl taint nodes node01 key=app:NoSchedule 
-  ``````  
+  kubectl taint nodes node01 key=app:NoSchedule
+  ``````
 - Visualizando taint no node: kubectl describe node < nome do node > ou kubectl describe node < nome do node > | grep Taints
 
   ``````
-  kubectl describe node node01 
+  kubectl describe node node01
 
   kubectl describe node node01 | grep Taints
   ``````
 - Removendo o taint do node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect-
    ``````
   kubectl taint nodes node01 key=app:NoSchedule-
-  ``````  
+  ``````
  ## Node Selector ##
  - Utilizado para selecionar em que nó o POD será criado
  - Necessário colocar labels no node para dar match com a label do POD
@@ -255,15 +255,15 @@ Algumas informações sobre o comando:
  - Para remover uma label usar o seguinte comando: kubectl label nodes < nome do node >  < label>-
  - Para mais detalhes visualize o arquivo node-selector-definition.yaml
 
-   `````` 
-    kubectl label nodes worker size- 
+   ``````
+    kubectl label nodes worker size-
    ``````
 
 - Para visualizar labels nos nodes executar o seguinte comando:
-   
+
   ``````
   kubectl get nodes --show-labels
- 
+
   ``````
 
 ## Node Affinity ##
@@ -292,10 +292,26 @@ Algumas informações sobre o comando:
 - Um POD não pode utilizar mais CPU do que o definido no limit
 - Quanto a memória, um POD pode utilizar mais memória que o definido nos limits, porém se for uma constante o POD é encerrado com o status OOM killed (Out Of Memory)
 - O Kubernetes não tem um padrão de utilização de memória e CPU, então caso não seja definido um limit, um POD pode utilizar todo o recurso de memória e cpu existente, sufocando o node.
-	
+
 ### Comportamento CPU ###
 
  - No requests / No limits: POD utiliza todo recurso de CPU até ocorrer Throttle
  - No requests / Limits: Kubernetes igual automaticamente os requests aos Limits
  - Requests / Limits: Cada POD recebe a quantidade de CPUS solicitadas, podendo utilizar até o limit definido
  - Requests / No limits: Neste cenário, considerando dois PODs, os PODs receberão os recursos informados no request, porém se o POD-1, por exemplo, precisar de mais CPU do que o POD-2 ele terá, pois não existe limits, caso o POD-2 precisar de mais recurso o POD-1 cederá recurso para o POD-2.
+
+### Comportamento Memória ###
+
+- No requests / No limits: Em um cenário com dois PODs um dos PODs pode utilizar toda memória e isso não é ideal
+- No requests / Limits: Mesmo comportamento de CPU
+- Requests / Limits: Mesmo comportamento CPU
+- Requests / No limits: Se o POD-1 consumir toda memória, e o POD-2 solicitar memória, a única forma de liberar memória é excluir o POD-1.
+- Exemplo de limits de memória: limits-memory.yaml
+
+### LimitRange ###
+- Objeto que garante que cada POD tenha um padrão de utilização de memória e CPU
+
+### Resources Quotas ###
+- Objeto de nível de namespace
+- Limita a utilização de memória e CPU por namespace
+- Segue yaml para exemplificar a criação de resources quotas resources-quotas.yaml
