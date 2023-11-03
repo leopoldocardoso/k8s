@@ -315,3 +315,13 @@ Algumas informações sobre o comando:
 - Objeto de nível de namespace
 - Limita a utilização de memória e CPU por namespace
 - Segue yaml para exemplificar a criação de resources quotas: resources-quotas.yaml
+
+### Monitorando Cluster Kubernetes ###
+- O Kubernetes não tem uma ferramenta nativa para monitoramente de recursos
+- Alguns comandos podem ser utilizados após a instalação de metric servers
+- O metric-servers pode ser instalado a partir da url abaixo utilizando o wget. Importante: Após baixar para testes em ambiente sem tls adicionar no arquivo yaml no campo args a linha: --kubelet-insecure-tls
+		- wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+- Alguns comandos:
+		- kubectl top node: visualizar o consumo de memória e cpu dos nodes
+		- kubectl top pod: visualizar métrica de desempenho dos PODs
+		- kubectl logs -f < nome do pod >: verificação dos logs
