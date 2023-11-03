@@ -9,11 +9,11 @@ spec: # Neste bloco será informado as especificações do pod/deployment como a
   containers:
     - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
       image: nginx # Imagem do nginx no Docker Hub
-  resources: # Neste bloco informamos os requisitos e limites de cpu e memória para um pod/deployment funcionar corretamente
-    requests: # Requsitos minimos de cpu e memóaria para um pod/deploy funcionar
-      memory: "250Mi"
-      cpu: "100m" # O uso de cpu pode ser especificado com m(milicpus). Neste exemplo o limite é 100 milicpus (equivale a milésima parte)
-    limits: # Até quanto de memória e cpu pode ser utilizada pelo pod/deploy
-      memory: "800Mi" # A memória pode ser especificad em Mi(Mebibytes), Gi(Gibibyte) ou G(Gigabyte)
-      cpu: "0.8" # O uso de cpu também pode ser especificado fracionado. Neste exemplo o limite é 0.8=800 milicpus
+      resources: # Neste bloco informamos os requisitos e limites de cpu e memória para um pod/deployment funcionar corretamente
+        requests: # Requsitos minimos de cpu e memóaria para um pod/deploy funcionar
+          memory: "250Mi"
+          cpu: "100m" # O uso de cpu pode ser especificado com m(milicpus). Neste exemplo o limite é 100 milicpus (equivale a milésima parte)
+        limits: # Até quanto de memória e cpu pode ser utilizada pelo pod/deploy
+          memory: "800Mi" # A memória pode ser especificad em Mi(Mebibytes), Gi(Gibibyte) ou G(Gigabyte)
+          cpu: "0.8" # O uso de cpu também pode ser especificado fracionado. Neste exemplo o limite é 0.8=800 milicpus
 
