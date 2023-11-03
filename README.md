@@ -278,3 +278,24 @@ Algumas informações sobre o comando:
 			 - requiredDuringSchedulingIgnoredDuringExecution: o POD só será executado no node que tenha a mesma label do POD. Importante: Se houver uma mudança label do node após a criação do POD o mesmo permanecerá criado.
        - preferredDuringSchedulingIgnoredDuringExecution: o POD será executado de preferência no node que tenha a mesma label
 - Para mais detalhes visualize o arquivo node-affinity-definition.yaml
+
+## Resources Requirements and Limits ##
+
+- Cada node tem um conjunto de recursos de CPU e memória disponíveis.
+- Cada POD requer um conjunto de memória e CPU para ser executado
+- O Kube-Schedule determina em que node o POD será criado. Esse node será escolhido, além de outra opções, também por recursos de CPU e memória disponíveis. Caso não haja recursos o POD ficará com o status pendente (Pending)
+- É possível colocar limits de CPU e memória para utilização do POD além dos valores de requests
+- Quando colocamos os valores de requests de CPU e memória no arquivo yaml garantimos o pod receberá aquela "quantidade de recurso", desde que esteja disponível no node.
+- Além do request podemos utilizar os limits para limitar o uso de um recurso do node utilizado pelo POD.
+- Para verificar a conguração de limits e requestes de cpu e memória acesse o arquivo limits-pod-definition.yaml
+- Caso um pode tente usar CPU além de do limite estabelecido, o sistema "estrangula" (Throttle) esse POD.
+- Um POD não pode utilizar mais CPU do que o definido no limit
+- Quanto a memória, um POD pode utilizar mais memória que o definido nos limits, porém se for uma constante o POD é encerrado com o status OOM killed (Out Of Memory)
+- O Kubernetes não tem um padrão de utilização de memória e CPU, então caso não seja definido um limit, um POD pode utilizar todo o recurso de memória e cpu existente, sufocando o node.
+	
+### Comportamento CPU ###
+
+ - No requests / No limits: POD utiliza todo recurso de CPU até ocorrer Throttle
+ - No requests / Limits: Kubernetes igual automaticamente os requests aos Limits
+ - Requests / Limits: Cada POD recebe a quantidade de CPUS solicitadas, podendo utilizar até o limit definido
+ - Requests / No limits: Neste cenário, considerando dois PODs, os PODs receberão os recursos informados no request, porém se o POD-1, por exemplo, precisar de mais CPU do que o POD-2 ele terá, pois não existe limits. Caso o POD-2 precisar de mais recurso o POD-1 cederá recurso para o POD-2.
