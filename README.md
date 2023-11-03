@@ -298,4 +298,4 @@ Algumas informações sobre o comando:
  - No requests / No limits: POD utiliza todo recurso de CPU até ocorrer Throttle
  - No requests / Limits: Kubernetes igual automaticamente os requests aos Limits
  - Requests / Limits: Cada POD recebe a quantidade de CPUS solicitadas, podendo utilizar até o limit definido
- - Requests / No limits: Neste cenário, considerando dois PODs, os PODs receberão os recursos informados no request, porém se o POD-1, por exemplo, precisar de mais CPU do que o POD-2 ele terá, pois não existe limits. Caso o POD-2 precisar de mais recurso o POD-1 cederá recurso para o POD-2.
+ - Requests / No limits: Neste cenário, considerando dois PODs, os PODs receberão os recursos informados no request, porém se o POD-1, por exemplo, precisar de mais CPU do que o POD-2 ele terá, pois não existe limits, caso o POD-2 precisar de mais recurso o POD-1 cederá recurso para o POD-2.
