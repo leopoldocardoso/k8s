@@ -320,7 +320,9 @@ Algumas informações sobre o comando:
 - O Kubernetes não tem uma ferramenta nativa para monitoramente de recursos
 - Alguns comandos podem ser utilizados após a instalação de metric servers
 - O metric-servers pode ser instalado a partir da url abaixo utilizando o wget. Importante: Após baixar para testes em ambiente sem tls adicionar no arquivo yaml no campo args a linha: --kubelet-insecure-tls
-		- wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+	wget https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
 - Alguns comandos:
 		- kubectl top node: visualizar o consumo de memória e cpu dos nodes
 		- kubectl top pod: visualizar métrica de desempenho dos PODs
