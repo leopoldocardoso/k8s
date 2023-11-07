@@ -352,7 +352,8 @@ Algumas informações sobre o comando:
     kubectl rollout undo deployment < nome do deploy >
     ``````
 
-	- Realizando Rollback de um deploy para uma versão específica:
+  - Realizando Rollback de um deploy para uma versão específica:
+
 
     ``````
      kubectl rollout undo deploy < nomedodeploy > --to-revision=< númerodarevisão >
