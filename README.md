@@ -327,3 +327,40 @@ Algumas informações sobre o comando:
 		- kubectl top node: visualizar o consumo de memória e cpu dos nodes
 		- kubectl top pod: visualizar métrica de desempenho dos PODs
 		- kubectl logs -f < nome do pod >: verificação dos logs
+
+### Rolling Updates and Rollbacks (Rollout Versioning) ###
+- Quando criamos um rollout(implementação) é criado uma revisão (versão) deste rollout
+- Quando é criado um novo rollout, uma nova versão é criada, chamada de revisao-2, por exemplo
+- Isso permite acompanhar as atualizações de versão e permite realizar Rollback, ou seja, voltar a versão se necessário
+
+- Alguns comandos:
+  - Visualizar status de um deploy:
+
+    ````
+     kubectl status deploy/< nome do deploy >
+    ``````
+
+  - Visualizar revisões/versões do deploy:
+
+     ````
+     kubectl rollout history deployment/< nome do deploy >
+     ``````
+
+  - Realizando Rollback de um deploy para ultima versão antes da alteração:
+
+     ``````
+    kubectl rollout undo deployment < nome do deploy >
+    ``````
+
+	- Realizando Rollback de um deploy para uma versão específica:
+
+    ``````
+     kubectl rollout undo deploy < nomedodeploy > --to-revision=< númerodarevisão >
+    ``````
+
+### Deployment Strategy ###
+
+- Há duas formas de executar novos deploys:
+
+	- Recreate: Todos os PODs antigos são destruídos e após isso novos PODs são criados.
+	- Rolling Update: Os PODs são recriados um a um enquantos PODs antigos são destruídos
