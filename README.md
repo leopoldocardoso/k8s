@@ -365,3 +365,10 @@ Algumas informações sobre o comando:
 
 	- Recreate: Todos os PODs antigos são destruídos e após isso novos PODs são criados.
 	- Rolling Update: Os PODs são recriados um a um enquantos PODs antigos são destruídos
+
+
+### Variables ###
+
+### Config Maps ###
+
+### Secrets ###
