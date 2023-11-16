@@ -1,0 +1,8 @@
+# ConfigMap
+apiVersion: v1 # Versão utilizada para configmap
+kind: ConfigMap # Tipo do objeto
+metadata: # dados sobre o objeto
+  name: app-config # Nome
+data: # Dados do configMap (chave:valor)
+  owner: Leopoldo Cardoso
+  contact: leopoldo.cardoso@lpcinfo.com.br
