@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simple-pod-envs
+  labels:
+    name: simple-pod-envs
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+      - containerPort: 8080
+    env:
+    - name: "Leopoldo"
