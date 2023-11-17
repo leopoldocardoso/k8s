@@ -367,8 +367,63 @@ Algumas informações sobre o comando:
 	- Rolling Update: Os PODs são recriados um a um enquantos PODs antigos são destruídos
 
 
-### Variables ###
+### ENV: Variáveis no Kubernetes ###
 
-### Config Maps ###
+- As variáveis podem ser utilizadas para armazenar dados não sensíveis.
+- A variável é um array
+- É declarada através da propriedade ENV, com syntaxe de chave:valor
+- Cada item sobre a propriedade ENV começa com um travessão ( - )
+- Elas pode ser declaradas de três formas num deploy/pod:
+		- Diretamente no Deploy/POD: utilizado para dados não sensíveis.
+		- ConfigMaps: utilizado para dados não sensíveis
+		- Secrets: utilizado para dados sensíveis
+- Para verificar como as ENVS são declaradas de forma direta em um pod verificar o arquivo envs-simple-pod.yaml
+
+### ConfigMaps ###
+
+- Uma outra forma de configuração de variáveis que facilita o gerenciamento de várias variáveis em um único POD
+- É possível criar um ConfigMap de forma imperativa ou de forma declarativa
+	- Criando configmap de forma imperativa: kubectl create configmap < config-name > --from-literal=< chave >=< valor >
+
+    ``````
+			 kubectl create configmap app-config --from-literal=user=leopoldo
+    ``````
+	- Criando configmap de forma declarativa: kubectl create -f < nome do arquivo.yaml >
+  ``````
+			kubectl create -f config-map-definition.yaml
+- Para visualizar o configmap criado executar o comando:
+  ``````
+   kubectl get configmaps
+- Para obter uma descrição e visualizar os dados do configmap executar o comando:
+  ``````
+     kubectl describe configmap < configmap-name >
+  ``````
+ -  Após criar o configmap, seja de forma declarativa ou imperativa, é possível declarar o configmap no pod, como no arquivo config-map-simple-pod.yaml
 
 ### Secrets ###
+
+- Utilizada para armazenar dados sensíveis usados por uma aplicação
+- Como o configmaps, as secrets podem ser criadas de modo imperativo e declarativo
+		- Criando secrets no modo imperativo: kubectl create secret generic < secret-name > --from-literal=< chave >=< valor >
+    ``````
+	   kubectl create secret generic secret-app --from-literal=pass=12234
+    ``````
+	- Criando secrets no modo declarativo: kubectl create -f < nome-do-arquivo.yaml >
+    ``````
+	   kubectl create -f secrets-definition.yaml
+- Para declarar as secrets no pod configurar o arquivo yaml de acordo com o secret-simple-pod.yaml
+- O problema é que desta forma passamos os dados em texto claro, sem nenhuma criptografia e qualquer pessoa com acesso ao arquivo yaml terá acesso aos dados
+- Uma opção seria codificar os dados usando, em sistemas unix, o comando echo -n < valor > | base64
+- Ainda assim qualquer pessoa com acesso ao POD teria acesso aos dados, inclusive decodificando com o comando echo -n < valor > | base64 --decode
+- Para usarmos secrets com segurança o ideal é utilizar ferramentas de terceiros como vault da aws, azure, hashicorp entre outros
+
+#### Outros comandos referente a secret: ####
+- Visualiza as secrets criadas:
+  ``````
+    kubectl get secrets
+- Descreve as secrets:kubectl describe secrets:
+  ``````
+    kubectl describe secret <secret-name>
+- Visualiza os valores das secrets:
+  ``````
+    kubectl get secrets <secret-name> -o yaml
