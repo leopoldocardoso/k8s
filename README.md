@@ -1,6 +1,4 @@
-# Estudos k8s 
-
-<p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/></p>
+# Estudos k8s <p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/></p>
 
 ## Este repositório tem como objetivo compartilhar o conhecimento que venho adquirindo nos estudos de Kubernetes
 
