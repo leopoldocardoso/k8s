@@ -4,6 +4,15 @@
 
 #### Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
+# Kubernetes
+
+## Camada de Gerenciamento ##
+
+
+
+
+
+
 ## Conceito de POD ##
 
  - O POD é o menor objeto que se pode criar no kubernetes
