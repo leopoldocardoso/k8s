@@ -6,12 +6,12 @@
 
 # Kubernetes
 
-## Camada de Gerenciamento ##
+## Camadas de Gerenciamento ##
 
-
-
-
-
+- Tomam decisões globais sobre o cluster
+- Detectam e respondem aos eventos do cluster
+- Podem ser executadas em qualquer máquina, porém para simplificar são iniciados em uma única máquina.
+- Contêineres com cargas de trabalho não rodam nesta máquina
 
 ## Conceito de POD ##
 
