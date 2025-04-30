@@ -4,7 +4,7 @@
 
 #### Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
-# Kubernetes
+# Conceito de Kubernetes
 
 ## Camadas de Gerenciamento ##
 
