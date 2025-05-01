@@ -40,13 +40,13 @@
 
 - ETCDCTL versão 2 suporta os seguintes comandos:
 
-  ```
+```
   etcdctl backup
   etcdctl cluster-health
   etcdctl mk
   etcdctl mkdir
   etcdctl set
-  ```
+```
 
 - Os comandos são diferentes na versão 3:
 
@@ -55,7 +55,7 @@
   etcdctl endpoint health
   etcdctl get
   etcdctl put
-  ```
+```
 - Para definir a versão correta do api set a variável de ambiente com comando  ETCDCTL_API
 ```
   export ETCDCTL_API=3
