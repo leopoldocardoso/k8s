@@ -13,6 +13,41 @@
 - Podem ser executadas em qualquer máquina, porém para simplificar são iniciados em uma única máquina.
 - Contêineres com cargas de trabalho não rodam nesta máquina
 
+### Arquitetura ###
+
+- Adicionar imagem
+
+### etcd ###
+
+- Armazenamento do tipo chave valor
+- Consistente e de alta disponibilidade
+- Usado como armazenamento de apoio do kubernetes para todos os dados do cluster
+- Confiável, rápido e seguro
+- Por padrão escuta na porta 2379
+- etcdtl ferramenta de linha de comando do etcd que pode ser usada para armazenar e recuperar pares de chave e valor
+- No etcd são armazenados:
+  - nodes
+  - pods
+  - configs
+  - secrets
+  - accounts
+  - roles
+  - bindings
+  - others
+- Cada mudança feita no cluster, como adição de nodes, implantação de pods ou réplicas sets é atualizado no servidor etcd
+
+#### Comandos etcd ####
+
+- ETCDCTL versão 2 suporta os seguintes comandos:
+
+  ```
+    etcdctl backup
+    etcdctl cluster-health
+    etcdctl mk
+    etcdctl mkdir
+    etcdctl set
+  ```
+
 ## Conceito de POD ##
 
  - O POD é o menor objeto que se pode criar no kubernetes
