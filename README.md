@@ -41,11 +41,11 @@
 - ETCDCTL versão 2 suporta os seguintes comandos:
 
   ```
-    etcdctl backup
-    etcdctl cluster-health
-    etcdctl mk
-    etcdctl mkdir
-    etcdctl set
+  etcdctl backup
+  etcdctl cluster-health
+  etcdctl mk
+  etcdctl mkdir
+  etcdctl set
   ```
 
 - Os comandos são diferentes na versão 3:
@@ -58,19 +58,19 @@
   ```
 - Para definir a versão correta do api set a variável de ambiente com comando  ETCDCTL_API
 ```
-export ETCDCTL_API=3
+  export ETCDCTL_API=3
 ```
 - Além dos comandos do etcd precisamos configurar o caminho do certificado para podermos nos autenticar no ETCD API Server
 
 ```
---cacert /etc/kubernetes/pki/etcd/ca.crt     
---cert /etc/kubernetes/pki/etcd/server.crt     
---key /etc/kubernetes/pki/etcd/server.key
+  --cacert /etc/kubernetes/pki/etcd/ca.crt     
+  --cert /etc/kubernetes/pki/etcd/server.crt     
+  --key /etc/kubernetes/pki/etcd/server.key
 ```
 - Formato final do comando para 
 
 ```
-kubectl exec etcd-master -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt  --key /etc/kubernetes/pki/etcd/server.key"
+  kubectl exec etcd-master -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt  --key /etc/kubernetes/pki/etcd/server.key"
 ```
 
 
