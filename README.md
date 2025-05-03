@@ -73,6 +73,64 @@
   kubectl exec etcd-master -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt  --key /etc/kubernetes/pki/etcd/server.key"
 ```
 
+### kube apiserver
+
+- Principal componente do Kubernetes
+- Componente da camada de gerenciamento
+- Expõe a API do kubernetes
+- O servidor do API é o front-end da camada de gerenciamento do kubernetes
+- Projetado para ser escalado horizontalmente
+- É possível executar várias instâncias do kube apiserver  e distribui o tráfego entre as instâncias
+- Responsável por autenticação e validação dos pedidos dos dados armazenados o etcd
+- Único componente que interage diretamente com o armazenamento de dados do etcd
+- Os demais componentes como scheduler, kube-controller-manager e kubelet interagem com o apiserver para realizar atualizações em suas respectivas áreas.
+
+### kube controller-manager ###
+
+- Gerencia vários controllers do kubernetes
+- Processo que monitora continuamente o estado de vários componentes dentro do sistema e trabalha para levar o sistema inteiro ao estado de funcionamento desejado
+
+### kube-scheduler ###
+
+- Responsável pelo agendamento dos PODs nos nodes
+- Define qual POD vai em qual node
+- Não coloca o POD no node, isso é um papel do kubelet
+
+### Kubelet ###
+
+- Registra o node
+- Cria os PODs
+- Monitora nodes e PODs
+
+### kube-proxy ###
+
+- Proporciona comunicação de rede entre os PODs
+
+## Arquivo Yaml no Kubernetes ##
+
+- O arquivo yaml ou yml segue uma estrutura básica com quatro campos de nível superior:
+  - apiVersion: versão do objeto que estamos utilizando
+  - kind: tipo do objeto que estamos utilizando
+  - metadata: dados do objeto, como labels, nome, etc. sempre chave:valor
+  - spec: campo com as especificações do container
+
+Ex:
+
+````
+  apiVersion: v1 # Versão utilizada para Pod
+  kind: Pod # Tipo do objeto
+  metadata: # Dados sobre o objeto
+    name: myapp-pod # Nome da aplicação
+    labels: # Pode ter qualquer valor para identificar a aplicação. Podemos ter várias labels
+      app: myapp
+      type: front-end
+  spec: # Neste bloco será informado as especificações do pod/deployment como as imagens de containers
+    containers:
+      - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
+        image: nginx # Imagem do nginx no Docker Hub
+
+````
+
 
 ## Conceito de POD ##
 
