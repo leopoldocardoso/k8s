@@ -114,9 +114,9 @@
   - metadata: dados do objeto, como labels, nome, etc. sempre chave:valor
   - spec: campo com as especificações do container
 
-Ex:
+Exemplo de arquivo yaml:
 
-````
+```
   apiVersion: v1 # Versão utilizada para Pod
   kind: Pod # Tipo do objeto
   metadata: # Dados sobre o objeto
@@ -128,8 +128,7 @@ Ex:
     containers:
       - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
         image: nginx # Imagem do nginx no Docker Hub
-
-````
+```
 
 
 ## Conceito de POD ##
