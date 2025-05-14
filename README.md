@@ -128,13 +128,35 @@ Exemplo de arquivo yaml:
     labels: # Pode ter qualquer valor para identificar a aplicação. Podemos ter várias labels
       app: myapp
       type: front-end
-      
+
   spec: # Neste bloco será informado as especificações do pod/deployment como as imagens de containers
     containers:
       - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
         image: nginx # Imagem do nginx no Docker Hub
 ```
+Tipos de Objeto:
 
+| Tipo de Objeto         | apiVersion                     | Descrição Breve                              |
+|------------------------|--------------------------------|----------------------------------------------|
+| Pod                    | v1                             | Unidade básica de execução de contêineres    |
+| Deployment             | apps/v1                        | Gerencia réplicas de pods com atualizações   |
+| ReplicaSet             | apps/v1                        | Garante número de réplicas de pods           |
+| StatefulSet            | apps/v1                        | Gerencia pods com estado persistente         |
+| DaemonSet              | apps/v1                        | Executa um pod por nó                        |
+| Service                | v1                             | Expõe pods como um serviço de rede           |
+| Ingress                | networking.k8s.io/v1           | Gerencia tráfego HTTP/HTTPS externo          |
+| ConfigMap              | v1                             | Armazena dados de configuração               |
+| Secret                 | v1                             | Armazena dados sensíveis                     |
+| PersistentVolume       | v1                             | Recurso de armazenamento persistente         |
+| PersistentVolumeClaim  | v1                             | Solicitação de armazenamento por pods        |
+| Namespace              | v1                             | Separa recursos em ambientes lógicos         |
+| Node                   | v1                             | Representa um nó no cluster                  |
+| Job                    | batch/v1                       | Executa tarefa única com conclusão           |
+| CronJob                | batch/v1                       | Agenda execução de Jobs                      |
+| HorizontalPodAutoscaler| autoscaling/v2                 | Escala pods automaticamente                  |
+| Role                   | rbac.authorization.k8s.io/v1   | Define permissões em um namespace            |
+| ClusterRole            | rbac.authorization.k8s.io/v1   | Define permissões no cluster                 |
+| ServiceAccount         | v1                             | Identidade para processos em pods            |
 
 ## Conceito de POD ##
 
