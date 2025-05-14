@@ -114,29 +114,13 @@
   - metadata: dados do objeto, como labels, nome, etc. sempre chave:valor
   - spec: campo com as especificações do container
 
-Exemplo de arquivo yaml:
 
-# Manifesto YAML de um Pod no Kubernetes
-
-Este é um exemplo comentado de um arquivo YAML que define um **Pod** no Kubernetes. Cada seção está separada e explicada para facilitar o estudo.
-
----
-
-# Manifesto YAML de um Pod no Kubernetes
-
-Este é um exemplo comentado de um arquivo YAML que define um **Pod** no Kubernetes. Cada seção está separada e explicada para facilitar o estudo.
-
----
-
-## Estrutura do YAML
-
-# Manifesto YAML de um Pod no Kubernetes
+## Manifesto YAML de um Pod no Kubernetes ##
 
 Este é um exemplo comentado de um arquivo YAML que define um **Pod** no Kubernetes. Os comentários estão incluídos diretamente no YAML para explicar cada campo, mantendo tudo claro e organizado.
 
----
 
-## Estrutura do YAML com Comentários
+## Estrutura do YAML com Comentários ##
 
 ```yaml
 apiVersion: v1              # Versão utilizada para Pod
@@ -152,7 +136,7 @@ spec:                       # Neste bloco será informado as especificações do
       image: nginx          # Imagem do nginx no Docker Hub
 ```
 
-Tipos de Objeto:
+### Tipos de Objeto: ###
 
 | Tipo de Objeto         | apiVersion                     | Descrição Breve                              |
 |------------------------|--------------------------------|----------------------------------------------|
