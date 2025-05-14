@@ -310,11 +310,17 @@ Algumas informações sobre o comando:
         kubectl create -f ns.definition.yaml
       ``````
 
-- Comandos imperativos: quando usamos os comandos para criação dos objetos em um cluster kubernetes sem a necessidade de um arquivo yaml.
+- Comandos imperativos: quando usamos os comandos para criação e/ou edição dos objetos em um cluster kubernetes sem a necessidade de um arquivo yaml.
   - Exemplo:
       ``````
-        kubectl run nginx --image=ngingx
+        kubectl run nginx --image=ngingx -> criando pod nginx
+        kubectl edit deployment nginx - editando deployment nginx
+        kubectl run redis --image redis:alpine -> criando o pod do redis
+        kubectl expose pod redis --port=6379 --name redis-service -> criando um serviço para o redis e expondo a porta 6379
+        kubectl create deployment webapp --image=nginx --replicas=3 -> criando um deployment com 3 réplicas
+
       ``````
+  - Observação: Sempre importante utilizar o comando kubectl run --help
 
   ## Schedule ##
 - Scheduling (agendador) é a configuração onde o POD será criado, ou seja, em que node o POD será criado.
