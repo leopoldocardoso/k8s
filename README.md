@@ -116,24 +116,34 @@
 
 Exemplo de arquivo yaml:
 
-```
-  apiVersion: v1 # Versão utilizada para Pod
+# Manifesto YAML de um Pod no Kubernetes
 
-  kind: Pod # Tipo do objeto
+Este é um exemplo comentado de um arquivo YAML que define um **Pod** no Kubernetes. Cada seção está separada e explicada para facilitar o estudo.
 
-  metadata: # Dados sobre o objeto
+---
 
-    name: myapp-pod # Nome da aplicação
+# Manifesto YAML de um Pod no Kubernetes
 
-    labels: # Pode ter qualquer valor para identificar a aplicação. Podemos ter várias labels
-      app: myapp
-      type: front-end
+Este é um exemplo comentado de um arquivo YAML que define um **Pod** no Kubernetes. Cada seção está separada e explicada para facilitar o estudo.
 
-  spec: # Neste bloco será informado as especificações do pod/deployment como as imagens de containers
-    containers:
-      - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
-        image: nginx # Imagem do nginx no Docker Hub
-```
+---
+
+## Estrutura do YAML
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+    type: front-end
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+
+
 Tipos de Objeto:
 
 | Tipo de Objeto         | apiVersion                     | Descrição Breve                              |
