@@ -118,12 +118,17 @@ Exemplo de arquivo yaml:
 
 ```
   apiVersion: v1 # Versão utilizada para Pod
+
   kind: Pod # Tipo do objeto
+
   metadata: # Dados sobre o objeto
+
     name: myapp-pod # Nome da aplicação
+
     labels: # Pode ter qualquer valor para identificar a aplicação. Podemos ter várias labels
       app: myapp
       type: front-end
+      
   spec: # Neste bloco será informado as especificações do pod/deployment como as imagens de containers
     containers:
       - name: nginx-container # Nome da imagem. O travessão (-) indica que é o primeiro item da lista
