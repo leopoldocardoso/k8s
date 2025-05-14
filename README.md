@@ -142,7 +142,7 @@ spec:
   containers:
     - name: nginx-container
       image: nginx
-
+```
 
 Tipos de Objeto:
 
