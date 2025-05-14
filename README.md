@@ -176,31 +176,25 @@ Tipos de Objeto:
 | ClusterRole            | rbac.authorization.k8s.io/v1   | Define permissões no cluster                 |
 | ServiceAccount         | v1                             | Identidade para processos em pods            |
 
-## Conceito de POD ##
+## kubernetes controller ##
 
- - O POD é o menor objeto que se pode criar no kubernetes
- - Se precisarmos escalar a aplicação, adicionamos uma nova instância de um POD com a mesma aplicação
- - Geralmente a relação é de um POD para um Container
- - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo
- - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
+  - Controller são o cérebro por trás do kubernetes
+  - São processos que monitoram objetos nativos do k8s
+  
+### Conceito de ReplicaSet ###
 
-```
-  kubectl run webserver nginx
-```
-
- ## Conceito de ReplicaSet ##
-
+- O ReplicaSet é um desses controllers. Garante alta disponibilidade dos PODs, garantindo que um número mínimo de PODs estará funcionando.
 - O propósito de um ReplicaSet é gerenciar um conjunto de réplicas de Pods em execução a qualquer momento
+- A função do conjunto de Replicas é monitorar os PODs, e se algum deles falhar, implantar novos. É o processo que monitora os PODs
 - É geralmente utilizado para garantir a disponibilidade de um certo número de Pods idênticos
+ - Se tivermos vários PODs podemos compartilhar a carga entre eles, utilizando o Load Balancing
 - Para criar um replicaset a partir do arquivo yaml basta executar o comando: kubectl create -f < nome do arquivo.yaml >
 
 ``````
   kubectl create -f replicaset-definition.yaml
 ``````
 
-- O número de réplicas no arquivo yaml é quantidade de pods que serão criados
-
-## Escalando ReplicaSet ##
+#### Escalando ReplicaSet ####
 
 É possível escalar o ReplicaSet de 3 maneiras:
 
@@ -221,6 +215,19 @@ Tipos de Objeto:
    ``````
     kubectl scale --replicas=8 replicaset replicaset-definition.yaml
   ``````
+
+## Conceito de POD ##
+
+ - O POD é o menor objeto que se pode criar no kubernetes
+ - Se precisarmos escalar a aplicação, adicionamos uma nova instância de um POD com a mesma aplicação
+ - Geralmente a relação é de um POD para um Container
+ - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo
+ - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
+
+```
+  kubectl run webserver nginx
+```
+
 
 ## Conceito de Deployment ##
 
