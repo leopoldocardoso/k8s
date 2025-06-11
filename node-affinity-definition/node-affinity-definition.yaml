@@ -1,4 +1,5 @@
-# Node Affinity
+---
+# Node Affinity - Usando Operator in
 apiVersion: v1
 kind: Pod
 metadata:
@@ -18,6 +19,53 @@ spec:
           nodeSelectorTerms:
             - matchExpressions:
               - key: color # chave
-                operator: In # operador
+                operator: In # operador in vai criar o pod no node que tiver chave e valor igual a color/blue
                 values: 
                   - blue # valor
+---
+# Node Affinity - Usando Operator NotIn
+apiVersion: v1
+kind: Pod
+metadata:
+    name: node-affinity
+    labels:
+        name: nginx
+        tier: frontend
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 8080
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution: # node affinity types, neste caso requer que os valores do affinty dê match com a label do node durante o scheduling
+          nodeSelectorTerms:
+            - matchExpressions:
+              - key: color # chave
+                operator: NotIn # operador NotIn vai criar o pod no node que não tiver chave e valor igual a color/blue
+                values: 
+                  - blue # valor
+
+---
+# Node Affinity - Usando Operator Exists
+apiVersion: v1
+kind: Pod
+metadata:
+    name: node-affinity
+    labels:
+        name: nginx
+        tier: frontend
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 8080
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution: # node affinity types, neste caso requer que os valores do affinty dê match com a label do node durante o scheduling
+          nodeSelectorTerms:
+            - matchExpressions:
+              - key: node-role.kubernetes.io/master # utilzando uma chave que não tem valor
+                operator: Exists # operador Exists vai criar o pod no node que tiver a a chave node-role.kubernetes.io/master

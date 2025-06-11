@@ -380,6 +380,10 @@ Algumas informações sobre o comando:
    ``````
    kubectl get pods --selector = app01
 
+   kubectl get all --selector env=prod --no-headers | wc -l
+
+   kubectl get all --selector env=prod,bu=finance,tier=frontend
+
    ``````
 ## Annotations ##
 - Usadas para registrar detalhes a fins de informação
@@ -396,6 +400,11 @@ Algumas informações sobre o comando:
   - NoExecute: Novos PODs não serão criados no node e os já criados serão despejados com o status de evicted.
 
 ## Comandos ##
+- Verificando a sintaxe e do taint
+   ``````
+  kubectl taint --help
+  ``````
+
 - Adicionando taint no node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect
   ``````
   kubectl taint nodes node01 key=app:NoSchedule
@@ -410,6 +419,9 @@ Algumas informações sobre o comando:
 - Removendo o taint do node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect-
    ``````
   kubectl taint nodes node01 key=app:NoSchedule-
+
+  kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
+
   ``````
  ## Node Selector ##
  - Utilizado para selecionar em que nó o POD será criado
