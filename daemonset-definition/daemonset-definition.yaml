@@ -1,0 +1,22 @@
+apiVersion: apps/v1 # Versão utilizada para daemonset
+kind: DaemonSet # Tipo do objeto
+metadata: # Dados sobre o objeto
+  name: monitoring-daemon # Nome do objeto (daemonset)
+  labels: # Pode ter qualquer valor para identificar a aplicação
+    app: monitoring-agent
+    type: frontend
+spec: # Especicificações referente ao todo, daemonset e containers
+  template:
+    metadata:
+      name: monitoring-agent
+      labels: 
+        app: monitoring-agent
+        type: frontend
+    spec: # Especificação referente ao container
+      containers:
+        - name: monitoring-agent
+          image: monitoring-agent
+  replicas: 3 # Quantidade de replicas
+  selector:
+    matchLabels: # Combina a label abaixo com a label do pod
+      type: frontend 

@@ -200,6 +200,16 @@ spec:                       # Neste bloco será informado as especificações do
     kubectl scale --replicas=8 replicaset replicaset-definition.yaml
   ``````
 
+  ### Daemon Sets ###
+
+  - Garante que uma cópia do POD esteja sempre presente em todos os nodes do cluster
+  - A criação do daemon set é semelhante a criação do réplica set [./daemonset-definition]: ./daemonset-definition/
+  
+  #### Quando usar Daemon Sets ####
+
+  - Solução de monitoramento do cluster
+  - O kube-proxy pode ser implantado como daemon sets
+
 ## Conceito de POD ##
 
  - O POD é o menor objeto que se pode criar no kubernetes
@@ -509,6 +519,7 @@ Algumas informações sobre o comando:
 		- kubectl top pod: visualizar métrica de desempenho dos PODs
 		- kubectl logs -f < nome do pod >: verificação dos logs
 
+
 ### Rolling Updates and Rollbacks (Rollout Versioning) ###
 - Quando criamos um rollout(implementação) é criado uma revisão (versão) deste rollout
 - Quando é criado um novo rollout, uma nova versão é criada, chamada de revisao-2, por exemplo
@@ -608,3 +619,7 @@ Algumas informações sobre o comando:
 - Visualiza os valores das secrets:
   ``````
     kubectl get secrets <secret-name> -o yaml
+
+
+
+
