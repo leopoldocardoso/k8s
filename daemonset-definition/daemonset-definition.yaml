@@ -16,7 +16,6 @@ spec: # Especicificações referente ao todo, daemonset e containers
       containers:
         - name: monitoring-agent
           image: monitoring-agent
-  replicas: 3 # Quantidade de replicas
   selector:
     matchLabels: # Combina a label abaixo com a label do pod
       type: frontend 
