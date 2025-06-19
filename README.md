@@ -203,7 +203,8 @@ spec:                       # Neste bloco será informado as especificações do
   ### Daemon Sets ###
 
   - Garante que uma cópia do POD esteja sempre presente em todos os nodes do cluster
-  - A criação do daemon set é semelhante a criação do réplica set [./daemonset-definition]: ./daemonset-definition/
+  - A criação do daemon set é semelhante a criação do réplica set
+  - Veja o yaml de criação  [aqui](./daemonset-definition\daemonset-definition.yaml/)
   
   #### Quando usar Daemon Sets ####
 
