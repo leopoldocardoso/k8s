@@ -390,11 +390,8 @@ Algumas informações sobre o comando:
 
    ``````
    kubectl get pods --selector = app01
-
    kubectl get all --selector env=prod --no-headers | wc -l
-
    kubectl get all --selector env=prod,bu=finance,tier=frontend
-
    ``````
 ## Annotations ##
 - Usadas para registrar detalhes a fins de informação
@@ -413,26 +410,23 @@ Algumas informações sobre o comando:
 ## Comandos ##
 - Verificando a sintaxe e do taint
    ``````
-  kubectl taint --help
+   kubectl taint --help
   ``````
 
 - Adicionando taint no node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect
   ``````
-  kubectl taint nodes node01 key=app:NoSchedule
+   kubectl taint nodes node01 key=app:NoSchedule
   ``````
 - Visualizando taint no node: kubectl describe node < nome do node > ou kubectl describe node < nome do node > | grep Taints
 
   ``````
-  kubectl describe node node01
-
-  kubectl describe node node01 | grep Taints
+   kubectl describe node node01
+   kubectl describe node node01 | grep Taints
   ``````
 - Removendo o taint do node: kubectl taint nodes < nome do node > < chave=valor >:taint-effect-
    ``````
-  kubectl taint nodes node01 key=app:NoSchedule-
-
-  kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
-
+    kubectl taint nodes node01 key=app:NoSchedule-
+    kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
   ``````
  ## Node Selector ##
  - Utilizado para selecionar em que nó o POD será criado
@@ -440,7 +434,7 @@ Algumas informações sobre o comando:
  - Para colocar uma label em um node usa-se o comando: kubectl label nodes < nome do node >  <label-key>=<values>
 
    ``````
-		kubectl label nodes node01 size=large
+	  kubectl label nodes node01 size=large
    ``````
  - Após colocar o label no node, devemos colocar o node selector no POD no bloco spec conforme o arquivo nodeSelector.yaml
  - Caso não haja o match entre o label no node e o nodeSelector o POD fica com o status Pending
@@ -454,22 +448,36 @@ Algumas informações sobre o comando:
 - Para visualizar labels nos nodes executar o seguinte comando:
 
   ``````
-  kubectl get nodes --show-labels
-
+    kubectl get nodes --show-labels
   ``````
 
 ## Node Affinity ##
-- Principal função é garantir que o POD será criado nos nodes específicos
--	O Node Affinity permite colocar expressões mais avançadas do que o node selector no momento de selecionar o node
--	Segue algumas das expressões mais utilizadas:
-	-	Operator: pode ter os valores:
-			- In
-			- Not In
-			- Exists
-	-	Node Affinity Types
-			 - requiredDuringSchedulingIgnoredDuringExecution: o POD só será executado no node que tenha a mesma label do POD. Importante: Se houver uma mudança label do node após a criação do POD o mesmo permanecerá criado.
-       - preferredDuringSchedulingIgnoredDuringExecution: o POD será executado de preferência no node que tenha a mesma label
-- Para mais detalhes visualize o arquivo node-affinity-definition.yaml
+
+- Proporciona capacidades avançadas para limitar a colocação de PODs em nodes específicos.
+- É configurado com operators que podem ser:
+
+  - operator: IN
+    values: "valores desejados"
+
+  - operator: NotIn
+    values: "valores desejados"
+  
+  - operator: Exists # Não tem values, apenas verifica se a label existe no node.
+
+- Para exemplos de como aplicar consulte o arquivo node-affinity-definition.yaml
+
+### Node Affinity Types ###
+
+- O tipo de afinidade dos nodes defini o comportamento do schedule com a afinidade dos nodes e as etapas do ciclo de vida do POD.
+- Os tipos são:
+  
+   - RequiredDuringShchedulingIgnoreDuringExecution: o POD só será executado no node que tenha a mesma label do POD.
+     
+     **Importante:** Se houver uma mudança de label do node após a criação do POD o mesmo permanecerá criado.
+
+   - preferredDuringSchedulingIgnoredDuringExecution: o POD será executado de preferência no node que tenha a mesma label.
+
+   - RequiredDuringSchedulingRequired: Requer a label correta tanto na criação do POD quanto na execução, caso haja alguma alteração na label o POD não permancerá criado.
 
 ## Resources Requirements and Limits ##
 
@@ -532,7 +540,6 @@ Algumas informações sobre o comando:
     ````
      kubectl status deploy/< nome do deploy >
     ``````
-
   - Visualizar revisões/versões do deploy:
 
      ````
@@ -546,7 +553,6 @@ Algumas informações sobre o comando:
     ``````
 
   - Realizando Rollback de um deploy para uma versão específica:
-
 
     ``````
      kubectl rollout undo deploy < nomedodeploy > --to-revision=< númerodarevisão >
@@ -583,7 +589,7 @@ Algumas informações sobre o comando:
     ``````
 	- Criando configmap de forma declarativa: kubectl create -f < nome do arquivo.yaml >
   ``````
-			kubectl create -f config-map-definition.yaml
+	  kubectl create -f config-map-definition.yaml
 - Para visualizar o configmap criado executar o comando:
   ``````
    kubectl get configmaps
@@ -620,7 +626,4 @@ Algumas informações sobre o comando:
 - Visualiza os valores das secrets:
   ``````
     kubectl get secrets <secret-name> -o yaml
-
-
-
-
+  ``````
