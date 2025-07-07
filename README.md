@@ -482,41 +482,80 @@ Algumas informações sobre o comando:
 ## Resources Requirements and Limits ##
 
 - Cada node tem um conjunto de recursos de CPU e memória disponíveis.
-- Cada POD requer um conjunto de memória e CPU para ser executado
-- O Kube-Schedule determina em que node o POD será criado. Esse node será escolhido, além de outra opções, também por recursos de CPU e memória disponíveis. Caso não haja recursos o POD ficará com o status pendente (Pending)
-- É possível colocar limits de CPU e memória para utilização do POD além dos valores de requests
+- Cada POD requer um conjunto de memória e CPU para ser executado.
+- O Kube-Schedule determina em que node o POD será criado. Esse node será escolhido, além de outra opções, também por recursos de CPU e memória disponíveis. Caso não haja recursos o POD ficará com o status pendente (Pending).
+- É possível colocar limits de CPU e memória para utilização do POD além dos valores de requests.
 - Quando colocamos os valores de requests de CPU e memória no arquivo yaml garantimos o pod receberá aquela "quantidade de recurso", desde que esteja disponível no node.
 - Além do request podemos utilizar os limits para limitar o uso de um recurso do node utilizado pelo POD.
-- Para verificar a conguração de limits e requestes de cpu e memória acesse o arquivo limits-pod-definition.yaml
 - Caso um pode tente usar CPU além de do limite estabelecido, o sistema "estrangula" (Throttle) esse POD.
-- Um POD não pode utilizar mais CPU do que o definido no limit
+- Um POD não pode utilizar mais CPU do que o definido no limit.
 - Quanto a memória, um POD pode utilizar mais memória que o definido nos limits, porém se for uma constante o POD é encerrado com o status OOM killed (Out Of Memory)
 - O Kubernetes não tem um padrão de utilização de memória e CPU, então caso não seja definido um limit, um POD pode utilizar todo o recurso de memória e cpu existente, sufocando o node.
+- Para verificar a conguração de limits e requestes de cpu e memória acesse o arquivo limits-pod-definition.yaml.
 
 ### Comportamento CPU ###
 
- - No requests / No limits: POD utiliza todo recurso de CPU até ocorrer Throttle
- - No requests / Limits: Kubernetes igual automaticamente os requests aos Limits
- - Requests / Limits: Cada POD recebe a quantidade de CPUS solicitadas, podendo utilizar até o limit definido
+ - No requests / No limits: POD utiliza todo recurso de CPU até ocorrer Throttle.
+ - No requests / Limits: Kubernetes iguala automaticamente os requests aos Limits.
+ - Requests / Limits: Cada POD recebe a quantidade de CPUS solicitadas, podendo utilizar até o limit definido.
  - Requests / No limits: Neste cenário, considerando dois PODs, os PODs receberão os recursos informados no request, porém se o POD-1, por exemplo, precisar de mais CPU do que o POD-2 ele terá, pois não existe limits, caso o POD-2 precisar de mais recurso o POD-1 cederá recurso para o POD-2.
 
-### Comportamento Memória ###
+### Comportamento Memória
 
-- No requests / No limits: Em um cenário com dois PODs um dos PODs pode utilizar toda memória e isso não é ideal
-- No requests / Limits: Mesmo comportamento de CPU
+- No requests / No limits: Em um cenário com dois PODs um dos PODs pode utiliza toda memória e isso não é ideal.
+- No requests / Limits: Mesmo comportamento de CPU.
 - Requests / Limits: Mesmo comportamento CPU
 - Requests / No limits: Se o POD-1 consumir toda memória, e o POD-2 solicitar memória, a única forma de liberar memória é excluir o POD-1.
 - Exemplo de limits de memória: limits-memory.yaml
 
-### LimitRange ###
-- Objeto que garante que cada POD tenha um padrão de utilização de memória e CPU
+### LimitRange
 
-### Resources Quotas ###
-- Objeto de nível de namespace
+- Objeto que garante que cada POD tenha um padrão de utilização de memória e CPU.
+- Define limites de cpu e memória.
+- É criado no nível de POD e não afeta PODs já criados.
+
+### Resources Quotas
+
+- Objeto de nível de namespace.
 - Limita a utilização de memória e CPU por namespace
 - Segue yaml para exemplificar a criação de resources quotas: resources-quotas.yaml
 
-### Monitorando Cluster Kubernetes ###
+## Daemon Sets
+
+- Garante que uma cópia do POD esteja sempre presente em todos os nós do cluster.
+- Quando usar daemon sets:
+  - Solução de monitramento do cluster.
+  - Na implantação do kube-proxy.
+- A criação de um daemo-set é semelhante a criação de um replica-set.
+
+## Static PODs
+
+- Kubelet é responsável pela criação dos PODs.
+- kubelet verifica o diretório /etc/kubernetes/manifests. Caso haja manifestos dentro deste diretório ele realiza a criação dos PODs.
+- Qualquer alteração neste diretório o kubelet recriará o POD.
+- Esses PODs criados pelo kubelet por conta própria sem a intervenção do api server ou do restante dos componentes do cluster são chamados de PODs estáticos.
+- O kubelet funciona a nível de POD, só entende PODs e é por isso que só pode criar PODs.
+- O diretório pode ser diferente do do /etc/kubernetes/manifests e é definido na configuração do kubelet service no path abaixo:
+
+```
+  --pod-manifest-path=/etc/kubernetes/manifests
+```
+
+- Outra opção de configuração é definir o caminho para outro arquivo de configuração.
+- Use a opção config=kubeconfig.yaml
+- No arquivo kubeconfig.yaml defina o staticPodPath = /etc/kubernetes/manifests
+
+### Verificando o caminho de configuração
+
+- Investigue o kubelet.service:
+  - --pod-manifest-path = <caminho>
+  - config=kubeconfig.yaml
+    - verificar neste arquivo staticPodPath
+
+- Toda essa situação se encaixa apenas se o cluster não iver o kube api server.
+
+### Monitorando Cluster Kubernetes
+
 - O Kubernetes não tem uma ferramenta nativa para monitoramente de recursos
 - Alguns comandos podem ser utilizados após a instalação de metric servers
 - O metric-servers pode ser instalado a partir da url abaixo utilizando o wget. Importante: Após baixar para testes em ambiente sem tls adicionar no arquivo yaml no campo args a linha: --kubelet-insecure-tls
@@ -529,7 +568,8 @@ Algumas informações sobre o comando:
 		- kubectl logs -f < nome do pod >: verificação dos logs
 
 
-### Rolling Updates and Rollbacks (Rollout Versioning) ###
+### Rolling Updates and Rollbacks (Rollout Versioning)
+
 - Quando criamos um rollout(implementação) é criado uma revisão (versão) deste rollout
 - Quando é criado um novo rollout, uma nova versão é criada, chamada de revisao-2, por exemplo
 - Isso permite acompanhar as atualizações de versão e permite realizar Rollback, ou seja, voltar a versão se necessário
