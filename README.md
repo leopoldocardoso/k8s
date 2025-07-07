@@ -164,7 +164,7 @@ spec:                       # Neste bloco será informado as especificações do
 
   - Controller são o cérebro por trás do kubernetes
   - São processos que monitoram objetos nativos do k8s
-  
+
 ### Conceito de ReplicaSet ###
 
 - O ReplicaSet é um desses controllers. Garante alta disponibilidade dos PODs, garantindo que um número mínimo de PODs estará funcionando.
@@ -556,7 +556,7 @@ Algumas informações sobre o comando:
 
 ## Priority Classes
 
-##  <p align="center">    ![Priorities](https://github.com/leopoldocardoso/k8s/blob/main/priorities/imagens/priorities.png) ##
+##  <p align="center">    ![Priorities](https://github.com/leopoldocardoso/k8s/blob/main/priority-class/imagens/priorities.png) ##
 
 - As prioridades podem ser altas com o número de 1 bilhão e baixa como 2 bilhões negativos.
 - Número maior, indica prioridade mais alta.
