@@ -461,7 +461,7 @@ Algumas informações sobre o comando:
 
   - operator: NotIn
     values: "valores desejados"
-  
+
   - operator: Exists # Não tem values, apenas verifica se a label existe no node.
 
 - Para exemplos de como aplicar consulte o arquivo node-affinity-definition.yaml
@@ -470,9 +470,9 @@ Algumas informações sobre o comando:
 
 - O tipo de afinidade dos nodes defini o comportamento do schedule com a afinidade dos nodes e as etapas do ciclo de vida do POD.
 - Os tipos são:
-  
+
    - RequiredDuringShchedulingIgnoreDuringExecution: o POD só será executado no node que tenha a mesma label do POD.
-     
+
      **Importante:** Se houver uma mudança de label do node após a criação do POD o mesmo permanecerá criado.
 
    - preferredDuringSchedulingIgnoredDuringExecution: o POD será executado de preferência no node que tenha a mesma label.
@@ -554,7 +554,27 @@ Algumas informações sobre o comando:
 
 - Toda essa situação se encaixa apenas se o cluster não iver o kube api server.
 
-### Monitorando Cluster Kubernetes
+## Priority Classes
+
+##  <p align="center">    ![Priorities](https://github.com/leopoldocardoso/k8s/blob/main/priorities/imagens/priorities.png) ##
+
+- As prioridades podem ser altas com o número de 1 bilhão e baixa como 2 bilhões negativos.
+- Número maior, indica prioridade mais alta.
+- O número de 1 bilhão a 2 bilhões negativos é para os aplicativos ou cargas de trabalho implantadas como aplicativos no cluster.
+- Há um intervalo separado que é dedicado a partes críticas do sistema interno como os próprios componentes do control plane.
+- Eles sempre recebem a prioridade máxima e tem prioridade de até 2 bilhões.
+- Podemos verificar as classes com o comando:
+
+```
+  kubectl get classes
+```
+
+- PODs com prioridade alta são colocadso primeiro no cluster, caso haja recursos, os PODs com menor prioridade são alocados.
+- Podemos criar uma nova Priority Class e adicionar a um POD.
+- Verifique o arquivo priority-class.yaml.
+
+
+## Monitorando Cluster Kubernetes
 
 - O Kubernetes não tem uma ferramenta nativa para monitoramente de recursos
 - Alguns comandos podem ser utilizados após a instalação de metric servers
