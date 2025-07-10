@@ -2,22 +2,22 @@
 
 ## Este repositório tem como objetivo compartilhar o conhecimento que venho adquirindo nos estudos de Kubernetes
 
-#### Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
+### Nota: os arquivos citados nos comandos estão dentro de pastas dentro deste repositório
 
 # Conceito de Kubernetes
 
-## Camadas de Gerenciamento ##
+## Camadas de Gerenciamento
 
 - Tomam decisões globais sobre o cluster
 - Detectam e respondem aos eventos do cluster
 - Podem ser executadas em qualquer máquina, porém para simplificar são iniciados em uma única máquina.
 - Contêineres com cargas de trabalho não rodam nesta máquina
 
-### Arquitetura ###
+### Arquitetura
 
 - Adicionar imagem
 
-### etcd ###
+### etcd
 
 - Armazenamento do tipo chave valor
 - Consistente e de alta disponibilidade
@@ -36,11 +36,11 @@
   - others
 - Cada mudança feita no cluster, como adição de nodes, implantação de pods ou réplicas sets é atualizado no servidor etcd
 
-#### Comandos etcd ####
+#### Comandos etcd
 
 - ETCDCTL versão 2 suporta os seguintes comandos:
 
-```
+```sh
   etcdctl backup
   etcdctl cluster-health
   etcdctl mk
@@ -50,26 +50,30 @@
 
 - Os comandos são diferentes na versão 3:
 
-```
-  etcdctl snapshot save 
+```sh
+  etcdctl snapshot save
   etcdctl endpoint health
   etcdctl get
   etcdctl put
 ```
+
 - Para definir a versão correta do api set a variável de ambiente com comando  ETCDCTL_API
-```
+
+```sh
   export ETCDCTL_API=3
 ```
+
 - Além dos comandos do etcd precisamos configurar o caminho do certificado para podermos nos autenticar no ETCD API Server
 
-```
-  --cacert /etc/kubernetes/pki/etcd/ca.crt     
-  --cert /etc/kubernetes/pki/etcd/server.crt     
+```sh
+  --cacert /etc/kubernetes/pki/etcd/ca.crt
+  --cert /etc/kubernetes/pki/etcd/server.crt
   --key /etc/kubernetes/pki/etcd/server.key
 ```
-- Formato final do comando para 
 
-```
+- Formato final do comando para
+
+```sh
   kubectl exec etcd-master -n kube-system -- sh -c "ETCDCTL_API=3 etcdctl get / --prefix --keys-only --limit=10 --cacert /etc/kubernetes/pki/etcd/ca.crt --cert /etc/kubernetes/pki/etcd/server.crt  --key /etc/kubernetes/pki/etcd/server.key"
 ```
 
@@ -85,28 +89,28 @@
 - Único componente que interage diretamente com o armazenamento de dados do etcd
 - Os demais componentes como scheduler, kube-controller-manager e kubelet interagem com o apiserver para realizar atualizações em suas respectivas áreas.
 
-### kube controller-manager ###
+### kube controller-manager
 
 - Gerencia vários controllers do kubernetes
 - Processo que monitora continuamente o estado de vários componentes dentro do sistema e trabalha para levar o sistema inteiro ao estado de funcionamento desejado
 
-### kube-scheduler ###
+### kube-scheduler
 
 - Responsável pelo agendamento dos PODs nos nodes
 - Define qual POD vai em qual node
 - Não coloca o POD no node, isso é um papel do kubelet
 
-### Kubelet ###
+### Kubelet
 
 - Registra o node
 - Cria os PODs
 - Monitora nodes e PODs
 
-### kube-proxy ###
+### kube-proxy
 
 - Proporciona comunicação de rede entre os PODs
 
-## Arquivo Yaml no Kubernetes ##
+## Arquivo Yaml no Kubernetes
 
 - O arquivo yaml ou yml segue uma estrutura básica com quatro campos de nível superior:
   - apiVersion: versão do objeto que estamos utilizando
@@ -115,12 +119,12 @@
   - spec: campo com as especificações do container
 
 
-## Manifesto YAML de um Pod no Kubernetes ##
+## Manifesto YAML de um Pod no Kubernetes
 
 Este é um exemplo comentado de um arquivo YAML que define um **Pod** no Kubernetes. Os comentários estão incluídos diretamente no YAML para explicar cada campo, mantendo tudo claro e organizado.
 
 
-## Estrutura do YAML com Comentários ##
+## Estrutura do YAML com Comentários
 
 ```yaml
 apiVersion: v1              # Versão utilizada para Pod
@@ -136,7 +140,7 @@ spec:                       # Neste bloco será informado as especificações do
       image: nginx          # Imagem do nginx no Docker Hub
 ```
 
-### Tipos de Objeto: ###
+### Tipos de Objeto:
 
 | Tipo de Objeto         | apiVersion                     | Descrição Breve                              |
 |------------------------|--------------------------------|----------------------------------------------|
@@ -160,104 +164,107 @@ spec:                       # Neste bloco será informado as especificações do
 | ClusterRole            | rbac.authorization.k8s.io/v1   | Define permissões no cluster                 |
 | ServiceAccount         | v1                             | Identidade para processos em pods            |
 
-## kubernetes controller ##
+## kubernetes controller
 
-  - Controller são o cérebro por trás do kubernetes
-  - São processos que monitoram objetos nativos do k8s
+- Controller são o cérebro por trás do kubernetes
+- São processos que monitoram objetos nativos do k8s
 
-### Conceito de ReplicaSet ###
+### Conceito de ReplicaSet
 
 - O ReplicaSet é um desses controllers. Garante alta disponibilidade dos PODs, garantindo que um número mínimo de PODs estará funcionando.
-- O propósito de um ReplicaSet é gerenciar um conjunto de réplicas de Pods em execução a qualquer momento
-- A função do conjunto de Replicas é monitorar os PODs, e se algum deles falhar, implantar novos. É o processo que monitora os PODs
-- É geralmente utilizado para garantir a disponibilidade de um certo número de Pods idênticos
- - Se tivermos vários PODs podemos compartilhar a carga entre eles, utilizando o Load Balancing
+- O propósito de um ReplicaSet é gerenciar um conjunto de réplicas de Pods em execução a qualquer momento.
+- A função do conjunto de Replicas é monitorar os PODs, e se algum deles falhar, implantar novos. É o processo que monitora os PODs.
+- É geralmente utilizado para garantir a disponibilidade de um certo número de Pods idênticos.
+ - Se tivermos vários PODs podemos compartilhar a carga entre eles, utilizando o Load Balancing.
 - Para criar um replicaset a partir do arquivo yaml basta executar o comando: kubectl create -f < nome do arquivo.yaml >
 
-``````
+``````sh
   kubectl create -f replicaset-definition.yaml
 ``````
 
-#### Escalando ReplicaSet ####
+#### Escalando ReplicaSet
 
 É possível escalar o ReplicaSet de 3 maneiras:
 
 1 - Editando o arquivo yaml, por exemplo, replicaset-definition.yaml, alterando o número de réplicas. Após salvar o arquivo, executar o comando:
 
-   ``````
+   ``````sh
      kubectl replace -f repicaset-definition.yaml
    ``````
 
 2 - Escalando através do comando kubectl scale --replicas=< nro de pods > -f < nome do arquivo.yaml >
 
-   ``````
+   ``````sh
     kubectl scale --replicas=3 -f replicaset-definition.yaml
   ``````
 
 3 - Escalando através do comando kubectl scale --replicas=< nro de pods > replicaset < nome do arquivo.yaml >
 
-   ``````
+   ``````sh
     kubectl scale --replicas=8 replicaset replicaset-definition.yaml
   ``````
 
-  ### Daemon Sets ###
+### Daemon Sets
 
-  - Garante que uma cópia do POD esteja sempre presente em todos os nodes do cluster
-  - A criação do daemon set é semelhante a criação do réplica set
-  - Veja o yaml de criação  [aqui](./daemonset-definition\daemonset-definition.yaml/)
-  
-  #### Quando usar Daemon Sets ####
+- Garante que uma cópia do POD esteja sempre presente em todos os nodes do cluster
+- A criação do daemon set é semelhante a criação do réplica set
+- Veja o yaml de criação  [aqui](./daemonset-definition\daemonset-definition.yaml/)
+
+  #### Quando usar Daemon Sets
 
   - Solução de monitoramento do cluster
   - O kube-proxy pode ser implantado como daemon sets
 
-## Conceito de POD ##
+## Conceito de POD
 
- - O POD é o menor objeto que se pode criar no kubernetes
- - Se precisarmos escalar a aplicação, adicionamos uma nova instância de um POD com a mesma aplicação
- - Geralmente a relação é de um POD para um Container
- - Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo
- - É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
+- O POD é o menor objeto que se pode criar no kubernetes
+- Se precisarmos escalar a aplicação, adicionamos uma nova instância de um POD com a mesma aplicação
+- Geralmente a relação é de um POD para um Container
+- Com multicontainers, um mesmo POD pode ter multiplos containers que geralmente não são do mesmo tipo
+- É possível criar um pod com o seguinte comando: kubectl run < nome do pod> < nome da image >
 
-```
+```sh
   kubectl run webserver nginx
 ```
 
-
-## Conceito de Deployment ##
+## Conceito de Deployment
 
 - O Deployment implementa PODs e ReplicaSets
 - Fornece atualizações declarativas para PODs e ReplicaSets
 - As atualizações podem ser contínuas
 - O arquivo do Deployment é praticamente o mesmo arquivo do ReplicaSet, modificando apenas o kind
 
-## Criando um Deployment ##
+## Criando um Deployment
 
 É possível criar um Deployment de 2 formas:
 
 1 - Executando o comando kubectl create deployment --image=< nome da imagem> < nome do deployment >
     Obs: poder ser deployment ou deploy
 
-  ``````
+  ``````sh
    kubectl create deploy --image=nginx nginx-deploy
   ``````
+
 2 - Gerando um manifesto yaml executando a linha de comando kubectl create deploy --image=< nome da imagem > < nome do deploy > --dry-run=client -o yaml > deploy-definition.yaml
 
-  ``````
+  ``````sh
     kubectl create deploy --image=redis redis-deployment --dry-run=client -o yaml > deployment-definition.yaml
   ``````
-   - Após gerar o arquivo yaml é necessário executar o comando kubectl create -f < nome do arquivo.yaml >
 
-   ``````
+- Após gerar o arquivo yaml é necessário executar o comando kubectl create -f < nome do arquivo.yaml >
+
+   ``````sh
     kubectl create -f deployment-definition.yaml
    ``````
-Algumas informações sobre o comando:
- - --dry-run=client -o yaml > deployment-definition.yaml: não executa a criação do deployment. Gera o manifesto yaml e salva este manifesto no arquivo deployment-definition.yaml
+
+- Algumas informações sobre o comando:
+
+ - --dry-run=client -o yaml > deployment-definition.yaml: não executa a criação do deployment. Gera o manifesto yaml e salva este manifesto no arquivo deployment-definition.yaml.
  - Partes do comando:
    - --dry-run=client: não executa a criação do deploy
    - -o yaml > deployment-definition.yaml: gera o manifesto yaml e salva este manifesto no arquivo deployment-definition.yaml
 
-## Conceito de Services ##
+## Conceito de Services
 
 - Permite a comunicação entre vários componentes dentro e fora da aplicação
 - O serviço kubernetes é um objeto, assim como um POD, Deployment ou ReplicaSet
@@ -266,81 +273,87 @@ Algumas informações sobre o comando:
   - ClusterIP
   - LoadBalancer
 - Neste primeiro momento iremos falar e demonstrar o NodePort
-  - O serviço NodePort funciona mapeando portas, sendo uma no node e outra na aplicação. 
+  - O serviço NodePort funciona mapeando portas, sendo uma no node e outra na aplicação.
   - Neste serviço há três portas mapeadas:
     - Porta onde o servidor web está rodando, geralmente a porta 80 e é sempre referenciada como TargetPort
     - Porta do próprio serviço, simplesmente referenciada apenas como porta
     - Porta do node, que usamos para acessar o servidor externalmente, NodePort. As portas do node só podem ser ajustadas entre 30000 e 32767. Se não declararmos essa porta no arquivo yaml, o kubernetes define de forma automática
 - Para criar o service você executa o seguinte comando:  kubectl create -f <nome do arquivo.yaml>
 
-  ``````
+  ```sh
   kubectl create -f service-definition.yaml
-  ``````
+  ```
+
 - Após a criação do service é possível executar o comando kubectl get service ou kubectl get svc para verificarmos se o serviço foi criado. Neste caso rodei com o grep para pegar apenas o serviço criado com o comando acima
 
- ``````
+ ``````sh
   kubectl get svc
 ``````
-## Conceito de Namespace ##
+
+## Conceito de Namespace
 
 - Todos os objetos do Kubernetes são criados dentro de um espaço com um nome, o namespace
 - O kubernetes cria três namespaces:
   - Kube-system: Neste namespace é criado um conjunto de PODs e serviços para finalidade interna do próprio kubernetes. Pode ser visualizado com o comando:
 
-   ``````
+   ``````sh
     kubectl get pods --namespace=kube-system
    ``````
+
   - kube-public: Neste namespace são criados recursos disponibilizados a todos usuários.
   - default: Neste namespace pode ser criados vários objetos pelo usuário.
 - Em um ambiente corporativo recomenda-se utilizar namespaces separados para cada aplicação e ambiente caso seja utilizado apenas um cluster.
 
-## Comandos Namespaces ##
+## Comandos Namespaces
 
 1 - Criando um namespace
-  - kubectl create namespace < nome do namespace >
 
-  ``````
+- kubectl create namespace < nome do namespace >
+
+  ```sh
     kubectl create namespace prod
     kubectl create namespace hml
-  ``````
+  ```
 
 2 - É possivel criar um Namespace com o arquivo yaml
-  - kubectl create namespace -f < nome do arquivo.yaml >
 
-   ``````
+- kubectl create namespace -f < nome do arquivo.yaml >
+
+   ```sh
     kubectl create -f namespace-definition.yaml
-  ``````
+  ```
 
 3 - Listar os Namespasces criados
 
-  ``````
+  ```sh
     kubectl get namespace
-  ``````
+  ```
 
 4 - Listar os pods em determinado namespace
-  - kubectl get pods --namespace=< nome do namespace >
 
-``````
+- kubectl get pods --namespace=< nome do namespace >
+
+```sh
   kubectl get pods --namespace=dev
-``````
+```
 
 5 - Listar todos os pods em todos os namespasces
 
-``````
+```sh
    kubectl get pods --all -namespaces
-``````
+```
 
 6 - Troca de contexto entre namespaces
 
-   - Este comando é bem importante e um dos mais dificeis para ser lembrado e executado no dia a dia em minha opinião. Para explicar o comando vamos usar o seguinte exemplo:
+- Este comando é bem importante e um dos mais dificeis para ser lembrado e executado no dia a dia em minha opinião. Para explicar o comando vamos usar o seguinte exemplo:
 
-     - Considerando a imagem abaixo, vamos supor que estou trabalhando no namespace-dev e por algum motivo preciso mudar para o namespace-prod. O comando a ser executado é:
+  - Considerando a imagem abaixo, vamos supor que estou trabalhando no namespace-dev e por algum motivo preciso mudar para o namespace-prod. O comando a ser executado é:
 
-     - kubectl config set-context $(kubectl config current-context) --namespace=< nome do namespace > onde no exemplo acima seria:
+  - kubectl config set-context $(kubectl config current-context) --namespace=< nome do namespace > onde no exemplo acima seria:
 
-``````
+```sh
      kubectl config set-context $(kubectl config current-context) --namespace=namespace-prod
-``````
+```
 
 
 - Exemplo de 3 namespasces em um único cluster
@@ -556,7 +569,7 @@ Algumas informações sobre o comando:
 
 ## Priority Classes
 
-##  <p align="center">    ![Priorities](https://github.com/leopoldocardoso/k8s/blob/main/priority-class/imagens/priorities.png) ##
+## <p align="center"> ![Priorities](https://github.com/leopoldocardoso/k8s/blob/main/priority-class/imagens/priorities.png)
 
 - As prioridades podem ser altas com o número de 1 bilhão e baixa como 2 bilhões negativos.
 - Número maior, indica prioridade mais alta.
@@ -565,14 +578,60 @@ Algumas informações sobre o comando:
 - Eles sempre recebem a prioridade máxima e tem prioridade de até 2 bilhões.
 - Podemos verificar as classes com o comando:
 
-```
-  kubectl get classes
+```sh
+kubectl get priorityclasses
 ```
 
 - PODs com prioridade alta são colocadso primeiro no cluster, caso haja recursos, os PODs com menor prioridade são alocados.
 - Podemos criar uma nova Priority Class e adicionar a um POD.
 - Verifique o arquivo priority-class.yaml.
 
+## Multiple Schedulers
+
+- Além do scheduler padrão, podemos ter outros schedulers.
+- Para criar um POD utilzando o novo agendador, é necessário passar a informação no yaml do do POD, nas especificações do container.
+- Se o nome for passado de forma incorreta o POD ficará com o status Pending.
+- Podemos executar o comando kubectl get pods -o wide para verificar qual agendador pegou.
+- Você pode visualizar estas configurações no arquivo multpli-schedulers.yaml.
+
+### Configuring Scheduler Profiles
+
+- Quando criamos um POD ele entra na fila de programação (Scheduling Queue).
+- Os PODs são ordenados por prioridades, definidas no próprio POD.
+- Existem plugins no kubernetes para programação dos PODs.
+- É possível configurar vários perfis dentro de um único agendador.
+
+## Admission Controllers
+
+- Admission controllers ajudam a implementar melhores medidas de segurança para reforçar a forma de como o cluster é usado.
+- Alguns Admission controllers:
+  - AlwaysPullImage
+  - DefaultStorageClass
+  - EventRateLimit: taxa de evento que pode ajudar a definir um limit de solicitações.
+  - NamespacesExists: admission controller padrão.
+  - NamespaceAutoProvision: quando habilitado permite que um namespace seja criado automaticamente no momento da criação de um POD, por exemplo, caso ele não exista.
+- Para ver a lista de admission controllers padrão execute o comando:
+
+```sh
+kube-apiserver -h | grep enable-admission-plugins
+```
+
+- Se tiver executando o comando em uma configuração baseada no kubeadm o comando é:
+
+```sh
+kubectl exec kube-apiserver-controlplane -n kube-system --kube-apiserver -h | grep enable-admission-plugins
+```
+
+- Para adicionar um admission controller, atualize a linha --enable-admission-plugins com o controller que você deseja adicionar.
+- Os plugins NamespaceExists e NamespaceAutoProision estão obsletos e foram substituidos pelo Controller NamespaceLifecycle.
+- O NamespaceLifecycle garante que as solicitações feitas para um namespace inexistente sejam rejeitas e os namespaces padrão Kube-System e kubepublic não possam ser execluídos.
+- É possível checar enable-admission-plugins em de duas formas:
+  - /etc/kubernetes/manifests/kube-apiserver.yaml
+  - com o comando abaixo:
+
+  ```sh
+  ps -ef | grep kube-apiserver | grep admission-plugins
+  ```
 
 ## Monitorando Cluster Kubernetes
 
