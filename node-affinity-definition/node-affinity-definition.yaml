@@ -20,7 +20,7 @@ spec:
             - matchExpressions:
               - key: color # chave
                 operator: In # operador in vai criar o pod no node que tiver chave e valor igual a color/blue
-                values: 
+                values:
                   - blue # valor
 ---
 # Node Affinity - Usando Operator NotIn
